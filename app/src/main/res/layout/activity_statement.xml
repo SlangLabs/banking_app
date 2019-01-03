@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".Statement">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="From"/>
+ <TextView
+        android:layout_width="wrap_content"
+     android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:text="Frequency"/>
+ <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     android:layout_marginTop="30dp"
+        android:text="Statement Date"/>
+ <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     android:layout_marginTop="40dp"
+        android:text="Dispatch Mode"/>
+ <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     android:layout_marginTop="20dp"
+        android:text="Email"/>
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="91098184207402"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:dropDownSelector="@color/colorPrimaryDark"
+        />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SELECT DATE"
+
+            android:id="@+id/select_date"
+            android:layout_marginTop="20dp">
+
+        </Button>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:dropDownSelector="@color/colorPrimaryDark"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Email ID"
+        android:layout_marginTop="10dp"/>
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:id="@+id/calendar"
+        android:background="#ffbcbc">
+
+    </CalendarView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Register Request"/>
+
+
+</LinearLayout>
+
+
+</LinearLayout>

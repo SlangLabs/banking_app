@@ -6,24 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Accounts extends AppCompatActivity {
+public class Services extends AppCompatActivity {
 
-    Button services;
+    Button request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accounts);
+        setContentView(R.layout.activity_services);
 
-        services = findViewById(R.id.services);
+        request = findViewById(R.id.requests);
 
-        services.setOnClickListener(new View.OnClickListener() {
+
+        request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Accounts.this, Services.class);
+                Intent intent = new Intent(Services.this, Statement.class);
                 startActivity(intent);
             }
         });
-
     }
 }

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,9 @@
         <activity android:name=".MoneyTransfer" />
         <activity android:name=".Accounts" />
         <activity android:name=".CustomerCare" />
-        <activity android:name=".Deposit"></activity>
+        <activity android:name=".Deposit" />
+        <activity android:name=".Services" />
+        <activity android:name=".Statement"></activity>
     </application>
 
 </manifest>

@@ -115,26 +115,11 @@
         android:padding="15dp" >
 
         <Button
-            android:id="@+id/reqstatement"
+            android:id="@+id/services"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Request Account statement"
+            android:text="Other Services"
             android:background="@drawable/grid6"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp" >
-
-        <TextView
-            android:id="@+id/downloadstatement"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="Statement Generated: Click to Download"
-            />
 
     </LinearLayout>
 
