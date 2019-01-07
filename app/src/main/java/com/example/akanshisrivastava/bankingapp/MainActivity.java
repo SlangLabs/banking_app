@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import in.slanglabs.platform.ui.SlangUI;
+
 public class MainActivity extends AppCompatActivity {
 
     Button account,transfer,care,deposit;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SlangUI.showTrigger();
         account = findViewById(R.id.account);
         transfer = findViewById(R.id.mtransfer);
         care = findViewById(R.id.care);

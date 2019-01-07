@@ -1,7 +1,7 @@
 package com.example.akanshisrivastava.bankingapp.slang;
 
 public class ActivityDetector {
-    public static final String ACTIVITY_MODE = "activity_mode";
+    /*public static final String ACTIVITY_MODE = "activity_mode";
 
     public static final String MODE_PRODUCT_DEFAULT = "default";
     public static final String MODE_PRODUCT = "product";
@@ -24,5 +24,15 @@ public class ActivityDetector {
 
     public static final String ENTITY_PRODUCT = "product";
     public static final String ENTITY_BRAND = "brand";
-    public static final String ENTITY_COLOR = "color";
+    public static final String ENTITY_COLOR = "color";*/
+
+    public static final String INTENT_VIEW_ACCOUNT_SUMMARY = "view_account_summary";
+    public static final String INTENT_VIEW_RECENT_TRANSACTIONS = "view_recent_transaction";
+    public static final String INTENT_VIEW_ACCOUNT_STATEMENT = "view_account_statement";
+    public static final String INTENT_REQUEST_ACCOUNT_STATEMENT = "request_account_statement";
+    public static final String INTENT_FUND_TRANSFER = "transfer_funds";
+    public static final String INTENT_PAY_BILLS = "pay_bills";
+    public static final String INTENT_ORDER_CHEQUE = "order_cheque";
+    public static final String INTENT_CONTACT_US = "contact_us";
+
 }

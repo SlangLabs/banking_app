@@ -5,99 +5,99 @@
     android:clipToPadding="false"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:weightSum="10" >
+    android:weightSum="10">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/title"
         android:layout_marginBottom="50dp"
-        >
-    </LinearLayout>
+        android:background="@drawable/title"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2"
         android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
 
-
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="100dp"
-android:layout_margin="7dp"
-android:layout_weight="1" >
-    <Button
-        android:id="@+id/account"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/grid5"
-        android:text="Accounts"
-        android:drawableTop="@drawable/account"
-        android:textColor="#FFF" />
-
-
-</LinearLayout>
-
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="100dp"
-android:layout_margin="7dp"
-android:layout_weight="1" >
-
-<Button
-    android:id="@+id/mtransfer"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/grid5"
-    android:textColor="#FFF"
-    android:drawableTop="@drawable/transfer"
-    android:text="Money Transfer" />
-</LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_margin="10dp"
-        android:weightSum="2"
-        android:orientation="horizontal">
-
-    <LinearLayout
-android:layout_width="0dp"
-android:layout_height="100dp"
-android:layout_margin="7dp"
-android:layout_weight="1"
-        >
-        <Button
-            android:id="@+id/deposit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/grid5"
-            android:textColor="#FFF"
-            android:paddingTop="13dp"
-            android:drawableTop="@drawable/deposit"
-            android:text="DEPOSIT" />
-
-    </LinearLayout>
         <LinearLayout
-android:layout_width="0dp"
-android:layout_height="100dp"
-android:layout_margin="7dp"
-android:layout_weight="1" >
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="7dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/account"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/grid5"
+                android:drawableTop="@drawable/account"
+                android:text="Accounts"
+                android:textColor="#FFF" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="7dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/mtransfer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/grid5"
+                android:drawableTop="@drawable/transfer"
+                android:text="Money Transfer"
+                android:textColor="#FFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="7dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/deposit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/grid5"
+                android:drawableTop="@drawable/deposit"
+                android:paddingTop="13dp"
+                android:text="DEPOSIT"
+                android:textColor="#FFF" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="7dp"
+            android:layout_weight="1">
+
             <Button
                 android:id="@+id/care"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/grid5"
-                android:textColor="#FFF"
                 android:drawableTop="@drawable/customer"
-                android:text="Customer Care" />
+                android:text="Customer Care"
+                android:textColor="#FFF" />
 
-</LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
