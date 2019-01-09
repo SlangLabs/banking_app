@@ -19,4 +19,7 @@
     <string name="communication_address">Communication Address</string>
     <string name="submit">Submit</string>
     <string name="apply_for_cheque_book">Apply for Cheque Book</string>
+    <string name="send">Send</string>
+    <string name="to_text">To: help@bank.com</string>
+    <string name="hint_feedback">Enter your feedback here</string>
 </resources>

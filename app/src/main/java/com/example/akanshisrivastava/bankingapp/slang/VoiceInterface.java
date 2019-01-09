@@ -144,13 +144,6 @@ public class VoiceInterface {
                         Intent intent = new Intent(appContext, CustomerCare.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         appContext.startActivity(intent);
-                        final Activity activity = SlangScreenContext.getInstance().getCurrentActivity();
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(activity, "Customer Support Feature not yet included", Toast.LENGTH_LONG).show();
-                            }
-                        });
                         return slangSession.success();
                     }
                 });
