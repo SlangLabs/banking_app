@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:context=".RecentTransactions">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,47 +82,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp" >
-
-        <Button
-            android:id="@+id/recent"
+        android:layout_height="match_parent">
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recent Transaction"
-            android:background="@drawable/grid6"/>
-
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recent_transactions_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.NestedScrollView>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp" >
-
-        <Button
-            android:id="@+id/lastfive"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Last 5 Transaction"
-            android:background="@drawable/grid6"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp" >
-
-        <Button
-            android:id="@+id/services"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Other Services"
-            android:background="@drawable/grid6"/>
-
-    </LinearLayout>
-
-
-
 </LinearLayout>

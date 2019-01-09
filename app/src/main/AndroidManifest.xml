@@ -3,7 +3,7 @@
     package="com.example.akanshisrivastava.bankingapp">
 
     <application
-        android:name=".slang.SlangMockApplication"
+        android:name=".SlangMockApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,7 +23,8 @@
         <activity android:name=".CustomerCare" />
         <activity android:name=".Deposit" />
         <activity android:name=".Services" />
-        <activity android:name=".Statement"></activity>
+        <activity android:name=".Statement" />
+        <activity android:name=".RecentTransactions"></activity>
     </application>
 
 </manifest>

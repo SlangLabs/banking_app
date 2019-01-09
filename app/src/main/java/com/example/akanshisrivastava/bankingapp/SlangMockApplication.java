@@ -1,9 +1,11 @@
-package com.example.akanshisrivastava.bankingapp.slang;
+package com.example.akanshisrivastava.bankingapp;
 
 import android.app.Application;
 import android.content.Context;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
+
+import com.example.akanshisrivastava.bankingapp.slang.VoiceInterface;
 
 public class SlangMockApplication extends Application {
     private static SlangMockApplication instance;
