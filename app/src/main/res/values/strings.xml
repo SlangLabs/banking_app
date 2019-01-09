@@ -8,10 +8,15 @@
     <string name="title1">Digital Solution</string>
     <string name="copyright">Digital Bank|2019</string>
     <string name="spinner_title">Select Category</string>
+    <string name="account_number_text">Account Number</string>
 
     <string name="recent_date">09 Jan \'19</string>
     <string name="recent_info">UPI/123123123/Xyz7656546@A</string>
     <string name="recent_type">Dr</string>
     <string name="recent_amount">200.00</string>
     <string name="bank_balance">49268.91</string>
+    <string name="account_number">1234567890</string>
+    <string name="communication_address">Communication Address</string>
+    <string name="submit">Submit</string>
+    <string name="apply_for_cheque_book">Apply for Cheque Book</string>
 </resources>

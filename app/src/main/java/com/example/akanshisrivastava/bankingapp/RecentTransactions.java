@@ -20,7 +20,6 @@ public class RecentTransactions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_transactions);
-
         recentTransactions = RecentTransactionsPojo.initRecentList(getResources());
 
         recyclerView = findViewById(R.id.recent_transactions_rv);

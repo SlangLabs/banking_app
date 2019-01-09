@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.akanshisrivastava.bankingapp.Accounts;
 import com.example.akanshisrivastava.bankingapp.CustomerCare;
 import com.example.akanshisrivastava.bankingapp.MoneyTransfer;
+import com.example.akanshisrivastava.bankingapp.RecentTransactions;
 import com.example.akanshisrivastava.bankingapp.Services;
 import com.example.akanshisrivastava.bankingapp.Statement;
 
@@ -66,13 +67,9 @@ public class VoiceInterface {
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
                     public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
-                        final Activity activity = SlangScreenContext.getInstance().getCurrentActivity();
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(activity, "View Recent Transactions Feature not yet included", Toast.LENGTH_LONG).show();
-                            }
-                        });
+                        Intent intent = new Intent(appContext, RecentTransactions.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        appContext.startActivity(intent);
                         return slangSession.success();
                     }
                 });
@@ -133,16 +130,9 @@ public class VoiceInterface {
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
                     public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
-                        Intent intent = new Intent(appContext, Services.class);
+                        Intent intent = new Intent(appContext, OrderCheque.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         appContext.startActivity(intent);
-                        final Activity activity = SlangScreenContext.getInstance().getCurrentActivity();
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(activity, "Order Cheque Feature not yet included", Toast.LENGTH_LONG).show();
-                            }
-                        });
                         return slangSession.success();
                     }
                 });

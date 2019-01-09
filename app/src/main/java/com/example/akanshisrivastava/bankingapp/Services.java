@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.akanshisrivastava.bankingapp.slang.OrderCheque;
+
 public class Services extends AppCompatActivity {
 
-    Button request;
+    Button request, cheque;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +18,19 @@ public class Services extends AppCompatActivity {
         setContentView(R.layout.activity_services);
 
         request = findViewById(R.id.requests);
-
-
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Services.this, Statement.class);
+                startActivity(intent);
+            }
+        });
+
+        cheque = findViewById(R.id.apply);
+        cheque.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Services.this, OrderCheque.class);
                 startActivity(intent);
             }
         });

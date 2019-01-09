@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Services">
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FACC2E"
         android:text="Services"
         android:textAlignment="center"
-        android:background="#FACC2E"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold"
         android:typeface="serif" />
@@ -20,50 +21,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_marginTop="20dp"
-        android:padding="15dp" >
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <Button
             android:id="@+id/requests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Request Statement"
             android:layout_marginBottom="20dp"
-            android:textSize="16dp"
-            android:background="@drawable/grid6"/>
+            android:background="@drawable/grid6"
+            android:text="Request Statement"
+            android:textSize="16sp" />
+
         <Button
             android:id="@+id/statuss"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status of Requests"
             android:layout_marginBottom="20dp"
-            android:textSize="16dp"
-            android:background="@drawable/grid6"/>
+            android:background="@drawable/grid6"
+            android:text="Status of Requests"
+            android:textSize="16sp" />
+
         <Button
             android:id="@+id/regcompl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:text="Register Complaint"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/grid6"/>
+            android:background="@drawable/grid6"
+            android:text="Register Complaint"
+            android:textSize="16sp" />
+
         <Button
             android:id="@+id/managecompl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
             android:layout_marginBottom="20dp"
+            android:background="@drawable/grid6"
             android:text="Complaints Management"
-            android:background="@drawable/grid6"/>
-<Button
+            android:textSize="16sp" />
+
+        <Button
             android:id="@+id/apply"
             android:layout_width="match_parent"
-    android:textSize="16dp"
             android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-            android:text="Apply for Bank Products"
-            android:background="@drawable/grid6"/>
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/grid6"
+            android:text="@string/apply_for_cheque_book"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
