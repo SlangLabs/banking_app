@@ -8,26 +8,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FACC2E"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/account_number_text"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"
-            android:typeface="serif" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_number_text"
+            android:layout_gravity="center"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:id="@+id/accno"
@@ -35,8 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/account_number"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="italic" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +37,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Available Balance"
+            android:text="@string/total_available_balance"
             android:textColor="#848484" />
     </LinearLayout>
 
@@ -62,7 +50,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="INR"
+            android:text="@string/inr"
             android:textColor="#848484"
             android:layout_marginRight="8dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -88,7 +76,7 @@
             android:id="@+id/recent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recent Transaction"
+            android:text="@string/recent_transaction"
             android:background="@drawable/grid6"/>
 
     </LinearLayout>
@@ -116,7 +104,7 @@
             android:id="@+id/services"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Other Services"
+            android:text="@string/other_services"
             android:background="@drawable/grid6"/>
 
     </LinearLayout>

@@ -31,4 +31,11 @@
     <string name="water">Water</string>
     <string name="tax">Tax</string>
     <string name="add_biller">Add Biller</string>
+    <string name="money_transfer">Money Transfer</string>
+    <string name="total_available_balance">Total Available Balance</string>
+    <string name="inr">INR</string>
+    <string name="transfer_to">Transfer To</string>
+    <string name="transfer_type">Transfer Type</string>
+    <string name="other_services">Other Services</string>
+    <string name="recent_transaction">Recent Transaction</string>
 </resources>

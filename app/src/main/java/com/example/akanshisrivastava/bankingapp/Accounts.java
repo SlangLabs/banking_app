@@ -14,6 +14,7 @@ public class Accounts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accounts);
+        getSupportActionBar().setTitle("Account");
 
         services = findViewById(R.id.services);
         recent = findViewById(R.id.recent);
