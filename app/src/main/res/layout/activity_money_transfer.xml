@@ -2,131 +2,190 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="12dp"
     android:background="#F2F2F2"
     android:orientation="vertical" >
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/account_number_text"
-            android:layout_gravity="center"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:id="@+id/accno"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/account_number"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/total_available_balance"
-            android:textColor="#848484" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp" >
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:text="@string/inr"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#848484" />
-
-        <TextView
-            android:id="@+id/amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bank_balance"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#0B2161"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp" >
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/transfer_to"
-            android:textColor="@color/colorPrimaryDark" />
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#848484"
-            android:orientation="vertical"
-            android:padding="8dp" >
-
+            android:orientation="vertical">
             <TextView
-                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="One Time Transfer"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#0B2161" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+                android:text="@string/transfer_to"
+                android:textSize="16sp"/>
+            <!--TODO implement nothing selected, set font size in that XML-->
+            <!--link:
+            https://stackoverflow.com/questions/10409871/how-to-increase-spinner-item-font-size
+            https://stackoverflow.com/questions/9476665/how-to-change-spinner-text-size-and-text-color-->
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/transfer_list"
+                android:prompt="@string/payee_prompt"
+                android:spinnerMode="dialog"/>
 
             <TextView
-                android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/amount"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/transfer_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                android:inputType="numberDecimal"
+                android:hint="@string/_0_0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/remarks"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/transfer_remarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:inputType="numberDecimal"
+                android:hint="@string/enter_remarks" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/transfer_type"
-                android:textSize="18sp"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textSize="16sp"/>
+
+            <!--TODO insert buttons/tabs here-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:background="@drawable/box_stroke"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="4dp"
-                android:layout_height="match_parent">
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:prompt="@string/spinner_title" />
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/imps"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_selector"
+                    android:layout_weight="1"
+                    android:focusableInTouchMode="true"
+                    android:text="@string/imps"/>
+                <Button
+                    android:id="@+id/neft"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_selector"
+                    android:focusableInTouchMode="true"
+                    android:layout_weight="1"
+                    android:text="@string/neft"/>
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
 
+            <TextView
+                android:id="@+id/type_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:text="@string/imps_description"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/neft_layout">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/transfer"
+                    android:textSize="16sp"/>
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/now"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="64dp"
+                        android:text="@string/later"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/from"
+                android:textSize="16sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/account_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_number_text"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_below="@+id/account_num"
+                    android:textSize="15sp"
+                    android:text="@string/account_number"/>
+                <TextView
+                    android:id="@+id/avail_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15sp"
+                    android:text="@string/available_balance"/>
+                <TextView
+                    android:id="@+id/amount_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/avail_balance"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/bank_balance"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/avail_balance"
+                    android:layout_marginRight="4dp"
+                    android:layout_toLeftOf="@+id/amount_text"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/inr"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
+            </RelativeLayout>
+            <Button
+                android:id="@+id/proceed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/proceed"
+                android:layout_marginTop="24dp"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

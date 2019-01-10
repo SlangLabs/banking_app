@@ -34,8 +34,30 @@
     <string name="money_transfer">Money Transfer</string>
     <string name="total_available_balance">Total Available Balance</string>
     <string name="inr">INR</string>
-    <string name="transfer_to">Transfer To</string>
+    <string name="transfer_to">Transfer to</string>
     <string name="transfer_type">Transfer Type</string>
     <string name="other_services">Other Services</string>
     <string name="recent_transaction">Recent Transaction</string>
+    <string name="amount">Amount</string>
+    <string name="remarks">Remarks</string>
+    <string name="imps_description">Up to INR 2 lakh trans. Real time. Works 24x7 and on holidays.</string>
+    <string name="neft_description">Up to INR 10 lakh trans. Receiver gets money in 2 to 24 hours.</string>
+    <string name="transfer">Transfer</string>
+    <string name="now">Now</string>
+    <string name="later">Later</string>
+    <string name="from">From</string>
+    <string name="available_balance">Available Balance</string>
+    <string name="proceed">Proceed</string>
+    <string name="_0_0">0.0</string>
+    <string name="enter_remarks">Please enter remarks</string>
+    <string name="payee_prompt">Enter Payee Name</string>
+    <string name="imps">IMPS</string>
+    <string name="neft">NEFT</string>
+
+    <string-array name="transfer_list">
+        <item>Kumar</item>
+        <item>Ved</item>
+        <item>Vinayak</item>
+        <item>Giri</item>
+    </string-array>
 </resources>
