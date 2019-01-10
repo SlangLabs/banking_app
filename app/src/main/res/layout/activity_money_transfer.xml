@@ -24,6 +24,7 @@
             https://stackoverflow.com/questions/10409871/how-to-increase-spinner-item-font-size
             https://stackoverflow.com/questions/9476665/how-to-change-spinner-text-size-and-text-color-->
             <Spinner
+                android:id="@+id/payee_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/transfer_list"
@@ -57,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:inputType="numberDecimal"
+                android:inputType="text"
                 android:hint="@string/enter_remarks" />
 
             <TextView
