@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 
 import com.example.akanshisrivastava.bankingapp.Accounts;
+import com.example.akanshisrivastava.bankingapp.Bills;
 import com.example.akanshisrivastava.bankingapp.CustomerCare;
 import com.example.akanshisrivastava.bankingapp.MoneyTransfer;
 import com.example.akanshisrivastava.bankingapp.RecentTransactions;
@@ -115,13 +116,9 @@ public class VoiceInterface {
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
                     public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
-                        final Activity activity = SlangScreenContext.getInstance().getCurrentActivity();
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(activity, "Pay Bills Feature not yet included", Toast.LENGTH_LONG).show();
-                            }
-                        });
+                        Intent intent = new Intent(appContext, Bills.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        appContext.startActivity(intent);
                         return slangSession.success();
                     }
                 });

@@ -22,4 +22,13 @@
     <string name="send">Send</string>
     <string name="to_text">To: help@bank.com</string>
     <string name="hint_feedback">Enter your feedback here</string>
+    <string name="bills">Bills</string>
+    <string name="customer_care">Customer Care</string>
+    <string name="credit_cards">Credit Cards</string>
+    <string name="electricity">Electricity</string>
+    <string name="postpaid">Postpaid</string>
+    <string name="landline">Landline</string>
+    <string name="water">Water</string>
+    <string name="tax">Tax</string>
+    <string name="add_biller">Add Biller</string>
 </resources>

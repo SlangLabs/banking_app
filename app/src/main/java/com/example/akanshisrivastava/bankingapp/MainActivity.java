@@ -46,15 +46,9 @@ public class MainActivity extends AppCompatActivity {
         deposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Deposit.class);
+                Intent intent = new Intent(MainActivity.this, Bills.class);
                 startActivity(intent);
             }
         });
     }
-
-    /*@Override
-    protected void onResume() {
-        super.onResume();
-        SlangUI.showTrigger();
-    }*/
 }

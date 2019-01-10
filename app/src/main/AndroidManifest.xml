@@ -21,7 +21,7 @@
         <activity android:name=".MoneyTransfer" />
         <activity android:name=".Accounts" />
         <activity android:name=".CustomerCare" />
-        <activity android:name=".Deposit" />
+        <activity android:name=".Bills" />
         <activity android:name=".Services" />
         <activity android:name=".Statement" />
         <activity android:name=".RecentTransactions" />
