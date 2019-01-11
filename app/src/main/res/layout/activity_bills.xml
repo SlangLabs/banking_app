@@ -66,11 +66,10 @@
             android:layout_weight="1">
             <Button
                 android:id="@+id/bill_landline"
-                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableTop="@drawable/baseline_phone_24"
-                android:text="@string/landline" />
+                android:drawableTop="@drawable/baseline_wifi_24"
+                android:text="@string/bradband" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"

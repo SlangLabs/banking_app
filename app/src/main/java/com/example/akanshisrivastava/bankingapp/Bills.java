@@ -1,6 +1,5 @@
 package com.example.akanshisrivastava.bankingapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,7 +53,7 @@ public class Bills extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Bills.this, BillPayment.class);
-                intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_LANDLINE);
+                intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_BROADBAND);
                 startActivity(intent);
             }
         });

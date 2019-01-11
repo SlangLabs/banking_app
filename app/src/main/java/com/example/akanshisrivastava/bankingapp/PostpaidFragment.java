@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.akanshisrivastava.bankingapp.adapters.NothingSelectedSpinnerAdapter;
@@ -24,16 +25,13 @@ public class PostpaidFragment extends Fragment {
     private Button proceed;
     private Spinner postSpinner;
     private EditText number, amount;
+    private TextView textView;
+    private static int num;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_postpaid, container, false);
-
-        Bundle bundle = getArguments();
-        String mode = "";
-        if (bundle != null)
-            mode = bundle.getString(ActivityDetector.PAYMENT_MODE);
 
         proceed = view.findViewById(R.id.postpaid_proceed);
         proceed.setOnClickListener(new View.OnClickListener() {
@@ -91,11 +89,31 @@ public class PostpaidFragment extends Fragment {
                 enableSubmitIfReady();
             }
         });
+        textView = view.findViewById(R.id.postpaid_tv_number);
+        ArrayAdapter<CharSequence> adapter;
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                getContext(),
-                R.array.postpaid_list,
-                android.R.layout.simple_spinner_item);;
+        Bundle bundle = getArguments();
+        String mode = "";
+        if (bundle != null)
+            mode = bundle.getString(ActivityDetector.PAYMENT_MODE);
+        if (mode.equals(ActivityDetector.PAYMENT_BROADBAND)) {
+            textView.setText(R.string.broadband_number);
+            number.setHint(R.string.broadband_hint);
+            adapter = ArrayAdapter.createFromResource(
+                    getContext(),
+                    R.array.landline_list,
+                    android.R.layout.simple_spinner_item);
+            num = 11;
+        }
+        else {
+            textView.setText(R.string.mobile_number);
+            number.setHint(R.string.mobile_number_hint);
+            adapter = ArrayAdapter.createFromResource(
+                    getContext(),
+                    R.array.postpaid_list,
+                    android.R.layout.simple_spinner_item);
+            num = 10;
+        }
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -109,7 +127,7 @@ public class PostpaidFragment extends Fragment {
 
     private void enableSubmitIfReady() {
         boolean spin = postSpinner != null && postSpinner.getSelectedItem() != null;
-        boolean isReady = spin && number.getText().toString().length() == 10 &&
+        boolean isReady = spin && number.getText().toString().length() == num &&
                 !amount.getText().toString().isEmpty();
         proceed.setEnabled(isReady);
     }

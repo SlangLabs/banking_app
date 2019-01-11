@@ -24,7 +24,6 @@ public class BillPayment extends AppCompatActivity {
                 //TODO disable some modes
                 //case ActivityDetector.PAYMENT_CREDIT:
                 case ActivityDetector.PAYMENT_ELEC:
-                //case ActivityDetector.PAYMENT_LANDLINE:
                 case ActivityDetector.PAYMENT_WATER:
                 //case ActivityDetector.PAYMENT_TAX:
                     ElectricityFragment electricityFragment = new ElectricityFragment();
@@ -35,6 +34,7 @@ public class BillPayment extends AppCompatActivity {
                             .commit();
                     break;
                 case ActivityDetector.PAYMENT_POST:
+                case ActivityDetector.PAYMENT_BROADBAND:
                     PostpaidFragment postpaidFragment = new PostpaidFragment();
                     postpaidFragment.setArguments(bundle);
                     getSupportFragmentManager()

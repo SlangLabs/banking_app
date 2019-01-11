@@ -27,7 +27,7 @@
     <string name="credit_cards">Credit Cards</string>
     <string name="electricity">Electricity</string>
     <string name="postpaid">Postpaid</string>
-    <string name="landline">Landline</string>
+    <string name="bradband">Broadband</string>
     <string name="water">Water</string>
     <string name="tax">Tax</string>
     <string name="add_biller">Add Biller</string>
@@ -61,7 +61,9 @@
     <string name="pay_bill">Pay Bill</string>
     <string name="select_operator">Select Operator</string>
     <string name="mobile_number">Mobile Number</string>
+    <string name="broadband_number">Broadband Number</string>
     <string name="mobile_number_hint">Enter 10 digit mobile number</string>
+    <string name="broadband_hint">Enter 11 digit broadband number</string>
 
     <string-array name="transfer_list">
         <item>Kumar</item>
@@ -87,6 +89,13 @@
         <item>Butch</item>
         <item>Freetail</item>
         <item>Treecell</item>
+    </string-array>
+
+    <string-array name="landline_list">
+        <item>PSNL Broadband</item>
+        <item>Kio Broadband</item>
+        <item>TL Broadband</item>
+        <item>Freetail Broadband</item>
     </string-array>
 
     <string-array name="account_number">

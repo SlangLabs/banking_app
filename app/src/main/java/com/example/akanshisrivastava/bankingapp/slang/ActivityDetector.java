@@ -15,7 +15,7 @@ public class ActivityDetector {
     public static final String PAYMENT_CREDIT = "payment_credit";
     public static final String PAYMENT_ELEC = "payment_elec";
     public static final String PAYMENT_POST = "payment_post";
-    public static final String PAYMENT_LANDLINE = "payment_landline";
+    public static final String PAYMENT_BROADBAND = "payment_broadband";
     public static final String PAYMENT_WATER = "payment_water";
     public static final String PAYMENT_TAX = "payment_tax";
 
