@@ -74,6 +74,10 @@
         <item>Sill Power Ltd</item>
     </string-array>
 
+    <string-array name="water_list">
+        <item>City Municipal Corporation</item>
+    </string-array>
+
     <string-array name="account_number">
         <item>Account-1234567890</item>
     </string-array>

@@ -16,7 +16,6 @@
         android:id="@+id/electricity_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/elec_list"
         android:layout_marginTop="4dp"
         android:prompt="@string/biller_select"
         android:spinnerMode="dialog"/>

@@ -79,7 +79,6 @@
             android:layout_weight="1">
             <Button
                 android:id="@+id/bill_water"
-                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableTop="@drawable/baseline_local_drink_24"
@@ -103,5 +102,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_gravity="center"
+        android:enabled="false"
         android:text="@string/add_biller"/>
 </LinearLayout>

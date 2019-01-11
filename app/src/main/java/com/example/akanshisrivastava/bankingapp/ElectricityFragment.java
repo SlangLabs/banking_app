@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.akanshisrivastava.bankingapp.adapters.NothingSelectedSpinnerAdapter;
+import com.example.akanshisrivastava.bankingapp.slang.ActivityDetector;
 
 public class ElectricityFragment extends Fragment {
     private Button proceed;
@@ -32,6 +33,11 @@ public class ElectricityFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_electricity, container, false);
+
+        Bundle bundle = getArguments();
+        String mode = "";
+        if (bundle != null)
+            mode = bundle.getString(ActivityDetector.PAYMENT_MODE);
 
         proceed = view.findViewById(R.id.electricity_proceed);
         proceed.setOnClickListener(new View.OnClickListener() {
@@ -73,8 +79,22 @@ public class ElectricityFragment extends Fragment {
             }
         });
 
-        ArrayAdapter<CharSequence> elecAdapter =
-                ArrayAdapter.createFromResource(getContext(), R.array.elec_list,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> elecAdapter;
+
+        if(mode.equals(ActivityDetector.PAYMENT_ELEC)) {
+            elecAdapter =
+                    ArrayAdapter.createFromResource(
+                            getContext(),
+                            R.array.elec_list,
+                            android.R.layout.simple_spinner_item);
+        }
+        else {
+            elecAdapter =
+                    ArrayAdapter.createFromResource(
+                            getContext(),
+                            R.array.water_list,
+                            android.R.layout.simple_spinner_item);
+        }
         elecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         elecSpinner.setAdapter(new NothingSelectedSpinnerAdapter(
