@@ -45,7 +45,6 @@
             android:layout_weight="1">
             <Button
                 android:id="@+id/bill_postpaid"
-                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableTop="@drawable/baseline_phone_android_24"

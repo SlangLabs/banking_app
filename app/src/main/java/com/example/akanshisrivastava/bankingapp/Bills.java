@@ -19,7 +19,6 @@ public class Bills extends AppCompatActivity {
         setContentView(R.layout.activity_bills);
         getSupportActionBar().setTitle("Pay Bills");
 
-        //TODO disable some modes
         credit = findViewById(R.id.bill_credit);
         credit.setOnClickListener(new View.OnClickListener() {
             @Override

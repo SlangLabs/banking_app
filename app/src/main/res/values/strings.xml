@@ -59,6 +59,9 @@
     <string name="consumer_number_hint">10 digit Consumer number</string>
     <string name="from_which_account">From which account do you want to pay</string>
     <string name="pay_bill">Pay Bill</string>
+    <string name="select_operator">Select Operator</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="mobile_number_hint">Enter 10 digit mobile number</string>
 
     <string-array name="transfer_list">
         <item>Kumar</item>
@@ -76,6 +79,14 @@
 
     <string-array name="water_list">
         <item>City Municipal Corporation</item>
+    </string-array>
+
+    <string-array name="postpaid_list">
+        <item>PSNL</item>
+        <item>Kio</item>
+        <item>Butch</item>
+        <item>Freetail</item>
+        <item>Treecell</item>
     </string-array>
 
     <string-array name="account_number">

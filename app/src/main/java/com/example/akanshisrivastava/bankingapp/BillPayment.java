@@ -18,22 +18,30 @@ public class BillPayment extends AppCompatActivity {
         String mode = intent.getStringExtra(ActivityDetector.PAYMENT_MODE);
 
         if (savedInstanceState == null) {
+            Bundle bundle = new Bundle();
+            bundle.putString(ActivityDetector.PAYMENT_MODE, mode);
             switch (mode) {
                 //TODO disable some modes
                 //case ActivityDetector.PAYMENT_CREDIT:
                 case ActivityDetector.PAYMENT_ELEC:
-                //case ActivityDetector.PAYMENT_POST:
                 //case ActivityDetector.PAYMENT_LANDLINE:
                 case ActivityDetector.PAYMENT_WATER:
                 //case ActivityDetector.PAYMENT_TAX:
-                    Bundle bundle = new Bundle();
-                    bundle.putString(ActivityDetector.PAYMENT_MODE, mode);
                     ElectricityFragment electricityFragment = new ElectricityFragment();
                     electricityFragment.setArguments(bundle);
                     getSupportFragmentManager()
                             .beginTransaction()
                             .add(R.id.billPayContainer, electricityFragment)
                             .commit();
+                    break;
+                case ActivityDetector.PAYMENT_POST:
+                    PostpaidFragment postpaidFragment = new PostpaidFragment();
+                    postpaidFragment.setArguments(bundle);
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.billPayContainer, postpaidFragment)
+                            .commit();
+                    break;
             }
         }
     }

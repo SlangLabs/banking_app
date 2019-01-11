@@ -19,27 +19,23 @@ import android.widget.Toast;
 import com.example.akanshisrivastava.bankingapp.adapters.NothingSelectedSpinnerAdapter;
 import com.example.akanshisrivastava.bankingapp.slang.ActivityDetector;
 
-public class ElectricityFragment extends Fragment {
-    private Button proceed;
-    private Spinner elecSpinner;
-    private EditText cn;
+public class PostpaidFragment extends Fragment {
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private Button proceed;
+    private Spinner postSpinner;
+    private EditText number, amount;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_electricity, container, false);
+        View view = inflater.inflate(R.layout.fragment_postpaid, container, false);
 
         Bundle bundle = getArguments();
         String mode = "";
         if (bundle != null)
             mode = bundle.getString(ActivityDetector.PAYMENT_MODE);
 
-        proceed = view.findViewById(R.id.electricity_proceed);
+        proceed = view.findViewById(R.id.postpaid_proceed);
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,8 +43,8 @@ public class ElectricityFragment extends Fragment {
             }
         });
 
-        elecSpinner = view.findViewById(R.id.electricity_spinner);
-        elecSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        postSpinner = view.findViewById(R.id.postpaid_spinner);
+        postSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 enableSubmitIfReady();
@@ -60,9 +56,8 @@ public class ElectricityFragment extends Fragment {
             }
         });
 
-        cn = view.findViewById(R.id.electricity_cn);
-
-        cn.addTextChangedListener(new TextWatcher() {
+        number = view.findViewById(R.id.postpaid_number);
+        number.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -79,26 +74,33 @@ public class ElectricityFragment extends Fragment {
             }
         });
 
-        ArrayAdapter<CharSequence> elecAdapter;
+        amount = view.findViewById(R.id.postpaid_amount);
+        amount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        if(mode.equals(ActivityDetector.PAYMENT_ELEC)) {
-            elecAdapter = ArrayAdapter.createFromResource(
-                    getContext(),
-                    R.array.elec_list,
-                    android.R.layout.simple_spinner_item
-            );
-        }
-        else {
-            elecAdapter = ArrayAdapter.createFromResource(
-                    getContext(),
-                    R.array.water_list,
-                    android.R.layout.simple_spinner_item
-            );
-        }
-        elecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            }
 
-        elecSpinner.setAdapter(new NothingSelectedSpinnerAdapter(
-                elecAdapter,
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                enableSubmitIfReady();
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                getContext(),
+                R.array.postpaid_list,
+                android.R.layout.simple_spinner_item);;
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        postSpinner.setAdapter(new NothingSelectedSpinnerAdapter(
+                adapter,
                 R.layout.spinner_row_nothing_selected_elec,
                 getContext()
         ));
@@ -106,8 +108,9 @@ public class ElectricityFragment extends Fragment {
     }
 
     private void enableSubmitIfReady() {
-        boolean spin = elecSpinner != null && elecSpinner.getSelectedItem() != null;
-        boolean isReady = spin && cn.getText().toString().length() == 10;
+        boolean spin = postSpinner != null && postSpinner.getSelectedItem() != null;
+        boolean isReady = spin && number.getText().toString().length() == 10 &&
+                !amount.getText().toString().isEmpty();
         proceed.setEnabled(isReady);
     }
 }
