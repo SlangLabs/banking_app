@@ -134,12 +134,24 @@ public class MoneyTransfer extends AppCompatActivity {
                 R.layout.spinner_row_nothing_selected_payee,
                 this
         ));
+        payeeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                enableSubmitIfReady();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                enableSubmitIfReady();
+            }
+        });
 
 
     }
 
     private void enableSubmitIfReady() {
-        boolean isReady = !amount.getText().toString().isEmpty() &&
+        boolean spin = payeeSpinner != null && payeeSpinner.getSelectedItem() != null;
+        boolean isReady = spin && !amount.getText().toString().isEmpty() &&
                 !remarks.getText().toString().isEmpty();
         proceed.setEnabled(isReady);
     }

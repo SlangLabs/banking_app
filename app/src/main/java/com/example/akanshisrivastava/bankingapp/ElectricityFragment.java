@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,7 @@ import com.example.akanshisrivastava.bankingapp.adapters.NothingSelectedSpinnerA
 
 public class ElectricityFragment extends Fragment {
     private Button proceed;
-    private Spinner elec;
+    private Spinner elecSpinner;
     private EditText cn;
 
     @Override
@@ -40,7 +41,19 @@ public class ElectricityFragment extends Fragment {
             }
         });
 
-        elec = view.findViewById(R.id.electricity_spinner);
+        elecSpinner = view.findViewById(R.id.electricity_spinner);
+        elecSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                enableSubmitIfReady();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                enableSubmitIfReady();
+            }
+        });
+
         cn = view.findViewById(R.id.electricity_cn);
 
         cn.addTextChangedListener(new TextWatcher() {
@@ -56,8 +69,7 @@ public class ElectricityFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                boolean isReady = cn.getText().toString().length() == 10;
-                proceed.setEnabled(isReady);
+                enableSubmitIfReady();
             }
         });
 
@@ -65,11 +77,17 @@ public class ElectricityFragment extends Fragment {
                 ArrayAdapter.createFromResource(getContext(), R.array.elec_list,android.R.layout.simple_spinner_item);
         elecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        elec.setAdapter(new NothingSelectedSpinnerAdapter(
+        elecSpinner.setAdapter(new NothingSelectedSpinnerAdapter(
                 elecAdapter,
                 R.layout.spinner_row_nothing_selected_elec,
                 getContext()
         ));
         return view;
+    }
+
+    private void enableSubmitIfReady() {
+        boolean spin = elecSpinner != null && elecSpinner.getSelectedItem() != null;
+        boolean isReady = spin && cn.getText().toString().length() == 10;
+        proceed.setEnabled(isReady);
     }
 }
