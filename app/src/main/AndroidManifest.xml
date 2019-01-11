@@ -25,7 +25,8 @@
         <activity android:name=".Services" />
         <activity android:name=".Statement" />
         <activity android:name=".RecentTransactions" />
-        <activity android:name=".slang.OrderCheque"></activity>
+        <activity android:name=".slang.OrderCheque" />
+        <activity android:name=".BillPayment"></activity>
     </application>
 
 </manifest>

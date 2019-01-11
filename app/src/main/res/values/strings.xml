@@ -53,11 +53,28 @@
     <string name="payee_prompt">Enter Payee Name</string>
     <string name="imps">IMPS</string>
     <string name="neft">NEFT</string>
+    <string name="biller_name">Biller Name</string>
+    <string name="biller_select">Select Biller</string>
+    <string name="consumer_number">Consumer Number</string>
+    <string name="consumer_number_hint">10 digit Consumer number</string>
+    <string name="from_which_account">From which account do you want to pay</string>
+    <string name="pay_bill">Pay Bill</string>
 
     <string-array name="transfer_list">
         <item>Kumar</item>
         <item>Ved</item>
         <item>Vinayak</item>
         <item>Giri</item>
+    </string-array>
+
+    <string-array name="elec_list">
+        <item>Home Power</item>
+        <item>City Electricity</item>
+        <item>State Power Corporation</item>
+        <item>Sill Power Ltd</item>
+    </string-array>
+
+    <string-array name="account_number">
+        <item>Account-1234567890</item>
     </string-array>
 </resources>

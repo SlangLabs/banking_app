@@ -21,8 +21,10 @@
             android:layout_height="80dp"
             android:layout_weight="1">
             <Button
+                android:id="@+id/bill_credit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:enabled="false"
                 android:drawableTop="@drawable/baseline_payment_24"
                 android:text="@string/credit_cards" />
         </LinearLayout>
@@ -31,6 +33,7 @@
             android:layout_height="80dp"
             android:layout_weight="1">
             <Button
+                android:id="@+id/bill_electricity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableTop="@drawable/baseline_highlight_24"
@@ -41,6 +44,8 @@
             android:layout_height="80dp"
             android:layout_weight="1">
             <Button
+                android:id="@+id/bill_postpaid"
+                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableTop="@drawable/baseline_phone_android_24"
@@ -61,6 +66,8 @@
             android:layout_height="80dp"
             android:layout_weight="1">
             <Button
+                android:id="@+id/bill_landline"
+                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableTop="@drawable/baseline_phone_24"
@@ -71,6 +78,8 @@
             android:layout_height="80dp"
             android:layout_weight="1">
             <Button
+                android:id="@+id/bill_water"
+                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableTop="@drawable/baseline_local_drink_24"
@@ -81,6 +90,8 @@
             android:layout_height="80dp"
             android:layout_weight="1">
             <Button
+                android:id="@+id/bill_tax"
+                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:drawableTop="@drawable/baseline_business_center_24"

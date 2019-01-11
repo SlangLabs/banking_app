@@ -19,15 +19,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/transfer_to"
                 android:textSize="16sp"/>
-            <!--TODO implement nothing selected, set font size in that XML-->
-            <!--link:
-            https://stackoverflow.com/questions/10409871/how-to-increase-spinner-item-font-size
-            https://stackoverflow.com/questions/9476665/how-to-change-spinner-text-size-and-text-color-->
             <Spinner
                 android:id="@+id/payee_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/transfer_list"
+                android:layout_marginTop="4dp"
                 android:prompt="@string/payee_prompt"
                 android:spinnerMode="dialog"/>
 

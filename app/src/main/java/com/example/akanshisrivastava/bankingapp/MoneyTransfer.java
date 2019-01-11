@@ -20,11 +20,11 @@ import com.example.akanshisrivastava.bankingapp.adapters.NothingSelectedSpinnerA
 
 public class MoneyTransfer extends AppCompatActivity {
 
-    Button imps, neft, proceed;
-    LinearLayout neftDescription;
-    TextView description;
-    EditText amount, remarks;
-    Spinner payeeSpinner;
+    private Button imps, neft, proceed;
+    private LinearLayout neftDescription;
+    private TextView description;
+    private EditText amount, remarks;
+    private Spinner payeeSpinner;
     private static final String TAG = MoneyTransfer.class.getSimpleName();
 
     @Override
