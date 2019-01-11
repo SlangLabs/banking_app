@@ -64,6 +64,15 @@
     <string name="broadband_number">Broadband Number</string>
     <string name="mobile_number_hint">Enter 10 digit mobile number</string>
     <string name="broadband_hint">Enter 11 digit broadband number</string>
+    <string name="status_of_requests">Status of Requests</string>
+    <string name="register_complaint">Register Complaint</string>
+    <string name="complaints_management">Complaints Management</string>
+    <string name="select_date">Select date</string>
+    <string name="register_request">Register Request</string>
+    <string name="enter_email_id">Enter Email ID</string>
+    <string name="email">Email</string>
+    <string name="select_frequency">Select Frequency</string>
+    <string name="select_dispatch_mode">Select Dispatch Mode</string>
 
     <string-array name="transfer_list">
         <item>Kumar</item>
@@ -101,4 +110,17 @@
     <string-array name="account_number">
         <item>Account-1234567890</item>
     </string-array>
+
+    <string-array name="frequency">
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Quarterly</item>
+        <item>Yearly</item>
+    </string-array>
+
+    <string-array name="dispatch">
+        <item>Email</item>
+        <item>Post</item>
+    </string-array>
+
 </resources>

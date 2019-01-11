@@ -35,39 +35,42 @@
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/statuss"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/grid6"
-            android:text="Status of Requests"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/regcompl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/grid6"
-            android:text="Register Complaint"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/managecompl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/grid6"
-            android:text="Complaints Management"
-            android:textSize="16sp" />
-
-        <Button
             android:id="@+id/apply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/grid6"
             android:text="@string/apply_for_cheque_book"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/statuss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/grid6"
+            android:text="@string/status_of_requests"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/regcompl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/grid6"
+            android:text="@string/register_complaint"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/managecompl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/grid6"
+            android:text="@string/complaints_management"
             android:textSize="16sp" />
 
     </LinearLayout>
