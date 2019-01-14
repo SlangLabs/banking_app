@@ -4,6 +4,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,6 +32,7 @@ public class Statement extends AppCompatActivity {
         dispatchSpinner = findViewById(R.id.request_dispatch_mode);
         frequencySpinner = findViewById(R.id.request_frequency);
         selectDate = findViewById(R.id.request_date);
+        selectDate.setInputType(InputType.TYPE_NULL);
         emailID = findViewById(R.id.request_email);
         proceed = findViewById(R.id.request_register);
 

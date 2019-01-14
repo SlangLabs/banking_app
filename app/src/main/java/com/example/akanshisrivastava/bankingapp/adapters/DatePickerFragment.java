@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.akanshisrivastava.bankingapp.AccountStatement;
+import com.example.akanshisrivastava.bankingapp.MoneyTransfer;
 import com.example.akanshisrivastava.bankingapp.R;
 import com.example.akanshisrivastava.bankingapp.Statement;
 
@@ -32,7 +33,6 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        //TODO add for NEFT
         String date = "" + dayOfMonth + "/" + (month + 1) + "/" + year;
         Activity activity = getActivity();
         if(activity instanceof Statement) {
@@ -40,6 +40,9 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
             editText.setText(date);
         } else if (activity instanceof AccountStatement) {
             AccountStatement.setDateSet(date);
+        } else if (activity instanceof MoneyTransfer) {
+            EditText editText = activity.findViewById(R.id.pay_later_date);
+            editText.setText(date);
         }
     }
 }

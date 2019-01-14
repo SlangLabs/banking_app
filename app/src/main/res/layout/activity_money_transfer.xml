@@ -65,7 +65,6 @@
                 android:text="@string/transfer_type"
                 android:textSize="16sp"/>
 
-            <!--TODO insert buttons/tabs here-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -109,6 +108,7 @@
                     android:text="@string/transfer"
                     android:textSize="16sp"/>
                 <RadioGroup
+                    android:id="@+id/neft_rg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -125,6 +125,14 @@
                         android:layout_marginLeft="64dp"
                         android:text="@string/later"/>
                 </RadioGroup>
+                <EditText
+                    android:id="@+id/pay_later_date"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="false"
+                    android:inputType="date"
+                    android:visibility="gone"
+                    android:hint="@string/select_date"/>
             </LinearLayout>
 
             <TextView

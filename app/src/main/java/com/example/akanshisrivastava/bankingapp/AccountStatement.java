@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class AccountStatement extends AppCompatActivity {
 
-    private LinearLayout customDateLayout, transactionLayout;
+    private LinearLayout transactionLayout;
     private RadioGroup radioGroup;
     private Button proceed;
     private static EditText start, end;
@@ -41,12 +42,13 @@ public class AccountStatement extends AppCompatActivity {
         setContentView(R.layout.activity_account_statement);
         getSupportActionBar().setTitle("Account Statement");
 
-        customDateLayout = findViewById(R.id.custom_date_layout);
         transactionLayout = findViewById(R.id.vs_linear_layout_transactions);
         radioGroup = findViewById(R.id.vs_radio_group);
         proceed = findViewById(R.id.vs_proceed);
         start = findViewById(R.id.vs_start);
         end = findViewById(R.id.vs_end);
+        start.setInputType(InputType.TYPE_NULL);
+        end.setInputType(InputType.TYPE_NULL);
         recyclerView = findViewById(R.id.vs_view_transactions_rv);
 
         transactionLayout.setVisibility(View.GONE);
@@ -89,7 +91,6 @@ public class AccountStatement extends AppCompatActivity {
                 transactionLayout.setVisibility(View.VISIBLE);
                 recentTransactions = RecentTransactionsPojo.initCompleteList(getResources());
                 List<RecentTransactionsPojo> recentTransactionsMonth = new ArrayList<>();
-                //TODO set list according to button selected
                 if(!(radioGroup.getCheckedRadioButtonId() == -1)) {
                     int selectedId = radioGroup.getCheckedRadioButtonId();
                     if (selectedId == R.id.vs_last_month || selectedId == R.id.vs_last_three_months) {
@@ -105,7 +106,6 @@ public class AccountStatement extends AppCompatActivity {
                             year--;
                         }
                         int day = c.get(Calendar.DATE);
-                        //TODO try with manually setting day to 31 and month to november
                         String requiredDate = day + "/" + (month + 1) + "/" + year;;
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         Date strDate = new Date();

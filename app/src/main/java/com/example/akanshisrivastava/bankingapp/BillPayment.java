@@ -21,11 +21,8 @@ public class BillPayment extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putString(ActivityDetector.PAYMENT_MODE, mode);
             switch (mode) {
-                //TODO disable some modes
-                //case ActivityDetector.PAYMENT_CREDIT:
                 case ActivityDetector.PAYMENT_ELEC:
                 case ActivityDetector.PAYMENT_WATER:
-                //case ActivityDetector.PAYMENT_TAX:
                     ElectricityFragment electricityFragment = new ElectricityFragment();
                     electricityFragment.setArguments(bundle);
                     getSupportFragmentManager()
