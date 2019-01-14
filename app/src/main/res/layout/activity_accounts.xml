@@ -87,10 +87,10 @@
         android:padding="15dp" >
 
         <Button
-            android:id="@+id/lastfive"
+            android:id="@+id/account_statement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Last 5 Transaction"
+            android:text="@string/view_account_statement"
             android:background="@drawable/grid6"/>
 
     </LinearLayout>

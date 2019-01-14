@@ -23,19 +23,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Frequency" />
+            android:text="@string/frequency" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Statement Date" />
+            android:text="@string/statement_date" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Dispatch Mode" />
+            android:text="@string/dispatch_mode" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,14 +86,6 @@
             android:layout_marginTop="5dp"
             android:hint="@string/enter_email_id"
             android:textSize="14sp" />
-        <!--<CalendarView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:id="@+id/calendar"
-            android:background="#ffbcbc">
-
-        </CalendarView>-->
 
         <Button
             android:id="@+id/request_register"

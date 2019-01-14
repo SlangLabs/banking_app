@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class Accounts extends AppCompatActivity {
 
-    Button services, recent;
+    Button services, recent, account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class Accounts extends AppCompatActivity {
 
         services = findViewById(R.id.services);
         recent = findViewById(R.id.recent);
+        account = findViewById(R.id.account_statement);
 
         services.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +32,14 @@ public class Accounts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Accounts.this, RecentTransactions.class);
+                startActivity(intent);
+            }
+        });
+
+        account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Accounts.this, AccountStatement.class);
                 startActivity(intent);
             }
         });

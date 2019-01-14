@@ -1,5 +1,6 @@
 package com.example.akanshisrivastava.bankingapp.adapters;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.example.akanshisrivastava.bankingapp.AccountStatement;
 import com.example.akanshisrivastava.bankingapp.R;
+import com.example.akanshisrivastava.bankingapp.Statement;
 
 import java.util.Calendar;
 
@@ -29,8 +32,14 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        EditText editText = getActivity().findViewById(R.id.request_date);
+        //TODO add for NEFT
         String date = "" + dayOfMonth + "/" + (month + 1) + "/" + year;
-        editText.setText(date);
+        Activity activity = getActivity();
+        if(activity instanceof Statement) {
+            EditText editText = activity.findViewById(R.id.request_date);
+            editText.setText(date);
+        } else if (activity instanceof AccountStatement) {
+            AccountStatement.setDateSet(date);
+        }
     }
 }

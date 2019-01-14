@@ -47,7 +47,7 @@ public class Statement extends AppCompatActivity {
         });
         ArrayAdapter<CharSequence> dispatchAdapter = ArrayAdapter.createFromResource(
                 this,
-                R.array.dispatch,
+                R.array.dispatch_list,
                 android.R.layout.simple_spinner_item
         );
         dispatchAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -70,7 +70,7 @@ public class Statement extends AppCompatActivity {
         });
         ArrayAdapter<CharSequence> frequencyAdapter = ArrayAdapter.createFromResource(
                 this,
-                R.array.frequency,
+                R.array.frequency_list,
                 android.R.layout.simple_spinner_item
         );
         frequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
