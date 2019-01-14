@@ -89,12 +89,12 @@
                 android:paddingLeft="8dp"
                 android:orientation="horizontal">
                 <RadioButton
-                    android:id="@+id/last_month"
+                    android:id="@+id/vs_last_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/last_month"/>
                 <RadioButton
-                    android:id="@+id/last_three_months"
+                    android:id="@+id/vs_last_three_months"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"

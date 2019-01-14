@@ -17,6 +17,11 @@ import com.example.akanshisrivastava.bankingapp.adapters.DatePickerFragment;
 import com.example.akanshisrivastava.bankingapp.adapters.RecentTransactionsAdapter;
 import com.example.akanshisrivastava.bankingapp.network.RecentTransactionsPojo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class AccountStatement extends AppCompatActivity {
@@ -82,10 +87,69 @@ public class AccountStatement extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 transactionLayout.setVisibility(View.VISIBLE);
-                recentTransactions = RecentTransactionsPojo.initRecentList(getResources());
+                recentTransactions = RecentTransactionsPojo.initCompleteList(getResources());
+                List<RecentTransactionsPojo> recentTransactionsMonth = new ArrayList<>();
+                //TODO set list according to button selected
+                if(!(radioGroup.getCheckedRadioButtonId() == -1)) {
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
+                    if (selectedId == R.id.vs_last_month || selectedId == R.id.vs_last_three_months) {
+                        Calendar c = Calendar.getInstance();
+                        int year = c.get(Calendar.YEAR);
+                        int month = 0;
+                        if(selectedId == R.id.vs_last_month)
+                            month = c.get(Calendar.MONTH) - 1;
+                        else
+                            month = c.get(Calendar.MONTH) - 3;
+                        if(month < 0) {
+                            month = month + 12;
+                            year--;
+                        }
+                        int day = c.get(Calendar.DATE);
+                        //TODO try with manually setting day to 31 and month to november
+                        String requiredDate = day + "/" + (month + 1) + "/" + year;;
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                        Date strDate = new Date();
+                        try {
+                            strDate = sdf.parse(requiredDate);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        for(int i = 0; i < recentTransactions.size(); i++) {
+                            try {
+                                if((sdf.parse(recentTransactions.get(i).date)).after(strDate)) {
+                                    recentTransactionsMonth.add(recentTransactions.get(i));
+                                }
+                                else {
+                                    break;
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+                else {
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    String requiredStart = start.getText().toString();
+                    String requiredEnd = end.getText().toString();
+                    for (int i = 0; i < recentTransactions.size(); i++) {
+                        try {
+                            if((sdf.parse(recentTransactions.get(i).date)).after(sdf.parse(requiredStart)) &&
+                                    (sdf.parse(recentTransactions.get(i).date)).before(sdf.parse(requiredEnd))) {
+                                recentTransactionsMonth.add(recentTransactions.get(i));
+                            }
+                            else if (!(sdf.parse(recentTransactions.get(i).date)).after(sdf.parse(requiredStart)) &&
+                                    !(sdf.parse(recentTransactions.get(i).date)).before(sdf.parse(requiredEnd))) {
+                                break;
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AccountStatement.this);
                 recyclerView.setLayoutManager(linearLayoutManager);
-                adapter = new RecentTransactionsAdapter(AccountStatement.this, recentTransactions);
+                adapter = new RecentTransactionsAdapter(AccountStatement.this, recentTransactionsMonth);
                 recyclerView.setAdapter(adapter);
             }
         });
