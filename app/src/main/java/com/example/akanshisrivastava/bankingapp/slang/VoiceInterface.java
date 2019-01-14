@@ -31,6 +31,8 @@ public class VoiceInterface {
     private static Application appContext;
     private static final String TAG = VoiceInterface.class.getSimpleName();
     private static boolean callAction;
+    private static int amount;
+    private static String date, payee, payment;
 
     public static void init(final Application context, String appId, String authKey, final boolean shouldHide) {
         appContext = context;
@@ -107,8 +109,41 @@ public class VoiceInterface {
                     public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
                         Intent intent = new Intent(appContext, MoneyTransfer.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(ActivityDetector.ENTITY_PAYEE, payee);
+                        intent.putExtra(ActivityDetector.ENTITY_AMOUNT, amount);
+                        intent.putExtra(ActivityDetector.ENTITY_PAYMENT, payment);
+                        intent.putExtra(ActivityDetector.ENTITY_DATE, date);
                         appContext.startActivity(intent);
                         return slangSession.success();
+                    }
+
+                    @Override
+                    public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent, SlangSession session) {
+                        amount = 0;
+                        payment = "";
+                        payee = "";
+                        date = "";
+                        return super.onIntentResolutionBegin(intent, session);
+                    }
+
+                    @Override
+                    public SlangSession.Status onEntityResolved(SlangEntity entity, SlangSession session) {
+                        switch (entity.getName()) {
+                            case ActivityDetector.ENTITY_AMOUNT:
+                                amount = Integer.valueOf(entity.getValue());
+                                return session.success();
+                            case ActivityDetector.ENTITY_PAYEE:
+                                payee = entity.getValue();
+                                return session.success();
+                            case ActivityDetector.ENTITY_PAYMENT:
+                                payment = entity.getValue().toUpperCase();
+                                return session.success();
+                            case ActivityDetector.ENTITY_DATE:
+                                date = entity.getValue();
+                                return session.success();
+                            default:
+                                return super.onEntityResolved(entity, session);
+                        }
                     }
                 });
 
@@ -116,7 +151,7 @@ public class VoiceInterface {
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
                     public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
-                        if(callAction) {
+                        if (callAction) {
                             Intent intent = new Intent(appContext, Bills.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             appContext.startActivity(intent);

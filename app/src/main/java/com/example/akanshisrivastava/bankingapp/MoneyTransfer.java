@@ -2,6 +2,7 @@ package com.example.akanshisrivastava.bankingapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.akanshisrivastava.bankingapp.adapters.DatePickerFragment;
 import com.example.akanshisrivastava.bankingapp.adapters.NothingSelectedSpinnerAdapter;
+import com.example.akanshisrivastava.bankingapp.slang.ActivityDetector;
 
 import static android.view.View.GONE;
 
@@ -34,6 +36,7 @@ public class MoneyTransfer extends AppCompatActivity {
     private EditText amount, remarks, payLaterDate;
     private Spinner payeeSpinner;
     private RadioGroup neftRadio;
+    private RadioButton payLaterRadioButton;
     private boolean payLaterVisible;
     private static final String TAG = MoneyTransfer.class.getSimpleName();
 
@@ -50,6 +53,7 @@ public class MoneyTransfer extends AppCompatActivity {
         amount = findViewById(R.id.transfer_amount);
         remarks = findViewById(R.id.transfer_remarks);
         payLaterDate = findViewById(R.id.pay_later_date);
+        payLaterRadioButton = findViewById(R.id.pay_later);
 
         neftRadio = findViewById(R.id.neft_rg);
         neftRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -202,11 +206,36 @@ public class MoneyTransfer extends AppCompatActivity {
             }
         });
 
-
+        Intent intent = getIntent();
+        int amountValue = intent.getIntExtra(ActivityDetector.ENTITY_AMOUNT, 0);
+        amount.setText(String.valueOf(amountValue));
+        String payee = intent.getStringExtra(ActivityDetector.ENTITY_PAYEE);
+        Log.d(TAG, "Payee Name is " + payee);
+        if(!payee.isEmpty()) {
+            for(int i = 1; i < payeeSpinner.getCount(); i++) {
+                if (payeeSpinner.getItemAtPosition(i).equals(payee)) {
+                    payeeSpinner.setSelection(i);
+                    break;
+                }
+            }
+        }
+        String payment = intent.getStringExtra(ActivityDetector.ENTITY_PAYMENT);
+        String date = intent.getStringExtra(ActivityDetector.ENTITY_DATE);
+        if(!payment.isEmpty()) {
+            if(payment.equalsIgnoreCase(ActivityDetector.ENTITY_VALUE_NEFT)) {
+                neft.requestFocus();
+                if(!date.isEmpty()) {
+                    payLaterRadioButton.setChecked(true);
+                    payLaterDate.setText(date);
+                }
+            } else if(payment.equalsIgnoreCase(ActivityDetector.ENTITY_VALUE_IMPS)) {
+                imps.requestFocus();
+            }
+        }
     }
 
     private void enableSubmitIfReady() {
-        boolean neftDate = false;
+        boolean neftDate;
         if(payLaterDate.getVisibility() == View.VISIBLE) {
             neftDate = !payLaterDate.getText().toString().isEmpty();
         }
@@ -215,6 +244,7 @@ public class MoneyTransfer extends AppCompatActivity {
         }
         boolean spin = payeeSpinner != null && payeeSpinner.getSelectedItem() != null;
         boolean isReady = neftDate && spin && !amount.getText().toString().isEmpty() &&
+                Integer.valueOf(amount.getText().toString()) > 0 &&
                 !remarks.getText().toString().isEmpty();
         proceed.setEnabled(isReady);
     }
