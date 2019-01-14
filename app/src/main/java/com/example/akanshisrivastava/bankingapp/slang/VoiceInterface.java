@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.akanshisrivastava.bankingapp.AccountStatement;
 import com.example.akanshisrivastava.bankingapp.Accounts;
+import com.example.akanshisrivastava.bankingapp.BillPayment;
 import com.example.akanshisrivastava.bankingapp.Bills;
 import com.example.akanshisrivastava.bankingapp.CustomerCare;
 import com.example.akanshisrivastava.bankingapp.MoneyTransfer;
@@ -20,6 +21,7 @@ import in.slanglabs.platform.application.ISlangApplicationStateListener;
 import in.slanglabs.platform.application.SlangApplication;
 import in.slanglabs.platform.application.SlangApplicationUninitializedException;
 import in.slanglabs.platform.application.actions.DefaultResolvedIntentAction;
+import in.slanglabs.platform.session.SlangEntity;
 import in.slanglabs.platform.session.SlangResolvedIntent;
 import in.slanglabs.platform.session.SlangSession;
 import in.slanglabs.platform.ui.SlangScreenContext;
@@ -28,6 +30,7 @@ public class VoiceInterface {
 
     private static Application appContext;
     private static final String TAG = VoiceInterface.class.getSimpleName();
+    private static boolean callAction;
 
     public static void init(final Application context, String appId, String authKey, final boolean shouldHide) {
         appContext = context;
@@ -113,10 +116,56 @@ public class VoiceInterface {
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
                     public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
-                        Intent intent = new Intent(appContext, Bills.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        appContext.startActivity(intent);
+                        if(callAction) {
+                            Intent intent = new Intent(appContext, Bills.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            appContext.startActivity(intent);
+                        }
                         return slangSession.success();
+                    }
+
+                    @Override
+                    public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent, SlangSession session) {
+                        callAction = true;
+                        return super.onIntentResolutionBegin(intent, session);
+                    }
+
+                    @Override
+                    public SlangSession.Status onEntityResolved(SlangEntity entity, SlangSession session) {
+                        if(entity.getName().equals(ActivityDetector.ENTITY_BILL)) {
+                            Intent intent;
+                            switch (entity.getValue().toLowerCase()) {
+                                case ActivityDetector.ENTITY_VALUE_ELEC:
+                                    intent = new Intent(appContext, BillPayment.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_ELEC);
+                                    callAction = false;
+                                    appContext.startActivity(intent);
+                                    return session.success();
+                                case ActivityDetector.ENTITY_VALUE_WATER:
+                                    intent = new Intent(appContext, BillPayment.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_WATER);
+                                    callAction = false;
+                                    appContext.startActivity(intent);
+                                    return session.success();
+                                case ActivityDetector.ENTITY_VALUE_BROADBAND:
+                                    intent = new Intent(appContext, BillPayment.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_BROADBAND);
+                                    callAction = false;
+                                    appContext.startActivity(intent);
+                                    return session.success();
+                                case ActivityDetector.ENTITY_VALUE_POSTPAID:
+                                    intent = new Intent(appContext, BillPayment.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_POST);
+                                    callAction = false;
+                                    appContext.startActivity(intent);
+                                    return session.success();
+                            }
+                        }
+                        return super.onEntityResolved(entity, session);
                     }
                 });
 

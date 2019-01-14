@@ -106,7 +106,7 @@ public class AccountStatement extends AppCompatActivity {
                             year--;
                         }
                         int day = c.get(Calendar.DATE);
-                        String requiredDate = day + "/" + (month + 1) + "/" + year;;
+                        String requiredDate = day + "/" + (month + 1) + "/" + year;
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         Date strDate = new Date();
                         try {

@@ -19,4 +19,18 @@ public class ActivityDetector {
     public static final String PAYMENT_WATER = "payment_water";
     public static final String PAYMENT_TAX = "payment_tax";
 
+    public static final String ENTITY_BILL = "bill";
+    public static final String ENTITY_PAYEE = "payee";
+    public static final String ENTITY_AMOUNT = "amount";
+    public static final String ENTITY_PAYMENT = "payment";
+
+
+    public static final String ENTITY_VALUE_ELEC = "electricity";
+    public static final String ENTITY_VALUE_WATER = "water";
+    public static final String ENTITY_VALUE_BROADBAND = "broadband";
+    public static final String ENTITY_VALUE_POSTPAID = "postpaid";
+
+    public static final String ENTITY_VALUE_NEFT = "NEFT";
+    public static final String ENTITY_VALUE_IMPS = "IMPS";
+
 }
