@@ -211,7 +211,7 @@ public class MoneyTransfer extends AppCompatActivity {
         amount.setText(String.valueOf(amountValue));
         String payee = intent.getStringExtra(ActivityDetector.ENTITY_PAYEE);
         Log.d(TAG, "Payee Name is " + payee);
-        if(!payee.isEmpty()) {
+        if(payee != null && !payee.isEmpty()) {
             for(int i = 1; i < payeeSpinner.getCount(); i++) {
                 if (payeeSpinner.getItemAtPosition(i).equals(payee)) {
                     payeeSpinner.setSelection(i);
@@ -221,7 +221,7 @@ public class MoneyTransfer extends AppCompatActivity {
         }
         String payment = intent.getStringExtra(ActivityDetector.ENTITY_PAYMENT);
         String date = intent.getStringExtra(ActivityDetector.ENTITY_DATE);
-        if(!payment.isEmpty()) {
+        if(payment != null && !payment.isEmpty()) {
             if(payment.equalsIgnoreCase(ActivityDetector.ENTITY_VALUE_NEFT)) {
                 neft.requestFocus();
                 if(!date.isEmpty()) {

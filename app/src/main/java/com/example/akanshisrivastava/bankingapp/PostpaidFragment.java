@@ -1,5 +1,6 @@
 package com.example.akanshisrivastava.bankingapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,6 +28,7 @@ public class PostpaidFragment extends Fragment {
     private EditText number, amount;
     private TextView textView;
     private static int num;
+    private OnFragmentPostInteractionListener mListener;
 
     @Nullable
     @Override
@@ -103,6 +105,10 @@ public class PostpaidFragment extends Fragment {
                     getContext(),
                     R.array.landline_list,
                     android.R.layout.simple_spinner_item);
+            if (mListener != null) {
+                mListener.onFragmentInteraction("Broadband Bill");
+                proceed.setText("Pay Broadband Bill");
+            }
             num = 11;
         }
         else {
@@ -112,6 +118,10 @@ public class PostpaidFragment extends Fragment {
                     getContext(),
                     R.array.postpaid_list,
                     android.R.layout.simple_spinner_item);
+            if (mListener != null) {
+                mListener.onFragmentInteraction("Postpaid Bill");
+                proceed.setText("Pay Postpaid Bill");
+            }
             num = 10;
         }
 
@@ -124,11 +134,31 @@ public class PostpaidFragment extends Fragment {
         ));
         return view;
     }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (OnFragmentPostInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnFragmentPostInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
 
     private void enableSubmitIfReady() {
         boolean spin = postSpinner != null && postSpinner.getSelectedItem() != null;
         boolean isReady = spin && number.getText().toString().length() == num &&
                 !amount.getText().toString().isEmpty();
         proceed.setEnabled(isReady);
+    }
+
+    public interface OnFragmentPostInteractionListener {
+        public void onFragmentInteraction(String title);
     }
 }

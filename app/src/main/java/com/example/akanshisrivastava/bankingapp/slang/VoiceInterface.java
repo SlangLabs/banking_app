@@ -20,6 +20,7 @@ import com.example.akanshisrivastava.bankingapp.Statement;
 import in.slanglabs.platform.application.ISlangApplicationStateListener;
 import in.slanglabs.platform.application.SlangApplication;
 import in.slanglabs.platform.application.SlangApplicationUninitializedException;
+import in.slanglabs.platform.application.SlangLocaleException;
 import in.slanglabs.platform.application.actions.DefaultResolvedIntentAction;
 import in.slanglabs.platform.session.SlangEntity;
 import in.slanglabs.platform.session.SlangResolvedIntent;
@@ -34,10 +35,13 @@ public class VoiceInterface {
     private static int amount;
     private static String date, payee, payment;
 
-    public static void init(final Application context, String appId, String authKey, final boolean shouldHide) {
+    public static void init(final Application context, String appId, String authKey, final boolean shouldHide) throws SlangLocaleException {
         appContext = context;
         Log.d(TAG, "Calling init");
-        SlangApplication.initialize(appContext, appId, authKey, new ISlangApplicationStateListener() {
+        SlangApplication.initialize(appContext, appId, authKey,
+                SlangApplication.getSupportedLocales(),
+                SlangApplication.LOCALE_ENGLISH_IN,
+                new ISlangApplicationStateListener() {
             @Override
             public void onInitialized() {
                 try {

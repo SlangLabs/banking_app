@@ -1,5 +1,6 @@
 package com.example.akanshisrivastava.bankingapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ public class ElectricityFragment extends Fragment {
     private Button proceed;
     private Spinner elecSpinner;
     private EditText cn;
+    private OnFragmentElecInteractionListener mListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,6 +89,10 @@ public class ElectricityFragment extends Fragment {
                     R.array.elec_list,
                     android.R.layout.simple_spinner_item
             );
+            if (mListener != null) {
+                mListener.onFragmentInteraction("Electricity Bill");
+                proceed.setText("Pay Electricity Bill");
+            }
         }
         else {
             elecAdapter = ArrayAdapter.createFromResource(
@@ -94,6 +100,10 @@ public class ElectricityFragment extends Fragment {
                     R.array.water_list,
                     android.R.layout.simple_spinner_item
             );
+            if (mListener != null) {
+                mListener.onFragmentInteraction("Water Bill");
+                proceed.setText("Pay Water Bill");
+            }
         }
         elecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -105,9 +115,30 @@ public class ElectricityFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (OnFragmentElecInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnFragmentPostInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
     private void enableSubmitIfReady() {
         boolean spin = elecSpinner != null && elecSpinner.getSelectedItem() != null;
         boolean isReady = spin && cn.getText().toString().length() == 10;
         proceed.setEnabled(isReady);
+    }
+
+    public interface OnFragmentElecInteractionListener {
+        public void onFragmentInteraction(String title);
     }
 }

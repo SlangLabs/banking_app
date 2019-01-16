@@ -6,7 +6,9 @@ import android.os.Bundle;
 
 import com.example.akanshisrivastava.bankingapp.slang.ActivityDetector;
 
-public class BillPayment extends AppCompatActivity {
+public class BillPayment extends AppCompatActivity implements
+        ElectricityFragment.OnFragmentElecInteractionListener,
+        PostpaidFragment.OnFragmentPostInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +43,10 @@ public class BillPayment extends AppCompatActivity {
                     break;
             }
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(String title) {
+        getSupportActionBar().setTitle(title);
     }
 }
