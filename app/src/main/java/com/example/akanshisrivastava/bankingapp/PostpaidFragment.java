@@ -107,7 +107,7 @@ public class PostpaidFragment extends Fragment {
                     android.R.layout.simple_spinner_item);
             if (mListener != null) {
                 mListener.onFragmentInteraction("Broadband Bill");
-                proceed.setText("Pay Broadband Bill");
+                proceed.setText(R.string.pay_broad_bill);
             }
             num = 11;
         }
@@ -120,7 +120,7 @@ public class PostpaidFragment extends Fragment {
                     android.R.layout.simple_spinner_item);
             if (mListener != null) {
                 mListener.onFragmentInteraction("Postpaid Bill");
-                proceed.setText("Pay Postpaid Bill");
+                proceed.setText(R.string.pay_post_bill);
             }
             num = 10;
         }

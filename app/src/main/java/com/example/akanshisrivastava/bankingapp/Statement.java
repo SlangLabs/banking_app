@@ -34,6 +34,9 @@ public class Statement extends AppCompatActivity {
         selectDate = findViewById(R.id.request_date);
         selectDate.setInputType(InputType.TYPE_NULL);
         emailID = findViewById(R.id.request_email);
+        emailID.setText(R.string.default_email);
+        emailID.setEnabled(false);
+
         proceed = findViewById(R.id.request_register);
 
         dispatchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.akanshisrivastava.bankingapp.slang.OrderCheque;
-
 public class Services extends AppCompatActivity {
 
     Button request, cheque;

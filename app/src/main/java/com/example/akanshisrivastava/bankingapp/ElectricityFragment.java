@@ -91,7 +91,7 @@ public class ElectricityFragment extends Fragment {
             );
             if (mListener != null) {
                 mListener.onFragmentInteraction("Electricity Bill");
-                proceed.setText("Pay Electricity Bill");
+                proceed.setText(R.string.pay_elec_bill);
             }
         }
         else {
@@ -102,7 +102,7 @@ public class ElectricityFragment extends Fragment {
             );
             if (mListener != null) {
                 mListener.onFragmentInteraction("Water Bill");
-                proceed.setText("Pay Water Bill");
+                proceed.setText(R.string.pay_water_bill);
             }
         }
         elecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

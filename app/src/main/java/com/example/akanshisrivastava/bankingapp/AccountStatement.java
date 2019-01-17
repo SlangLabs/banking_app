@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.akanshisrivastava.bankingapp.adapters.DatePickerFragment;
 import com.example.akanshisrivastava.bankingapp.adapters.RecentTransactionsAdapter;
@@ -30,6 +31,7 @@ public class AccountStatement extends AppCompatActivity {
     private LinearLayout transactionLayout;
     private RadioGroup radioGroup;
     private Button proceed;
+    private TextView noMatch;
     private static EditText start, end;
     private RecentTransactionsAdapter adapter;
     private RecyclerView recyclerView;
@@ -45,6 +47,7 @@ public class AccountStatement extends AppCompatActivity {
         transactionLayout = findViewById(R.id.vs_linear_layout_transactions);
         radioGroup = findViewById(R.id.vs_radio_group);
         proceed = findViewById(R.id.vs_proceed);
+        noMatch = findViewById(R.id.no_match);
         start = findViewById(R.id.vs_start);
         end = findViewById(R.id.vs_end);
         start.setInputType(InputType.TYPE_NULL);
@@ -149,8 +152,15 @@ public class AccountStatement extends AppCompatActivity {
                 }
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AccountStatement.this);
                 recyclerView.setLayoutManager(linearLayoutManager);
-                adapter = new RecentTransactionsAdapter(AccountStatement.this, recentTransactionsMonth);
-                recyclerView.setAdapter(adapter);
+                if (!recentTransactionsMonth.isEmpty()) {
+                    noMatch.setVisibility(View.GONE);
+                    adapter = new RecentTransactionsAdapter(AccountStatement.this, recentTransactionsMonth);
+                    recyclerView.setAdapter(adapter);
+                }
+                else {
+                    noMatch.setVisibility(View.VISIBLE);
+                    transactionLayout.setVisibility(View.GONE);
+                }
             }
         });
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

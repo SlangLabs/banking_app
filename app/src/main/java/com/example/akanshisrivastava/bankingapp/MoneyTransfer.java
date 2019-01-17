@@ -137,6 +137,7 @@ public class MoneyTransfer extends AppCompatActivity {
         imps.setFocusable(true);
         imps.setFocusableInTouchMode(true);
         imps.requestFocus();
+        imps.setBackgroundResource(R.drawable.button_shape_selected);
         imps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,8 +150,11 @@ public class MoneyTransfer extends AppCompatActivity {
         imps.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
+                if(hasFocus) {
                     v.performClick();
+                    imps.setBackgroundResource(R.drawable.button_shape_selected);
+                    neft.setBackgroundResource(R.drawable.button_shape_unselected);
+                }
             }
         });
 
@@ -169,8 +173,11 @@ public class MoneyTransfer extends AppCompatActivity {
         neft.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
+                if(hasFocus) {
                     v.performClick();
+                    neft.setBackgroundResource(R.drawable.button_shape_selected);
+                    imps.setBackgroundResource(R.drawable.button_shape_unselected);
+                }
             }
         });
 
@@ -208,7 +215,8 @@ public class MoneyTransfer extends AppCompatActivity {
 
         Intent intent = getIntent();
         int amountValue = intent.getIntExtra(ActivityDetector.ENTITY_AMOUNT, 0);
-        amount.setText(String.valueOf(amountValue));
+        if(amountValue > 0)
+            amount.setText(String.valueOf(amountValue));
         String payee = intent.getStringExtra(ActivityDetector.ENTITY_PAYEE);
         Log.d(TAG, "Payee Name is " + payee);
         if(payee != null && !payee.isEmpty()) {

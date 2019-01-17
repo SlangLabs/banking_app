@@ -1,6 +1,5 @@
 package com.example.akanshisrivastava.bankingapp.slang;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.util.Log;
@@ -13,8 +12,8 @@ import com.example.akanshisrivastava.bankingapp.BillPayment;
 import com.example.akanshisrivastava.bankingapp.Bills;
 import com.example.akanshisrivastava.bankingapp.CustomerCare;
 import com.example.akanshisrivastava.bankingapp.MoneyTransfer;
+import com.example.akanshisrivastava.bankingapp.OrderCheque;
 import com.example.akanshisrivastava.bankingapp.RecentTransactions;
-import com.example.akanshisrivastava.bankingapp.Services;
 import com.example.akanshisrivastava.bankingapp.Statement;
 
 import in.slanglabs.platform.application.ISlangApplicationStateListener;
@@ -25,7 +24,6 @@ import in.slanglabs.platform.application.actions.DefaultResolvedIntentAction;
 import in.slanglabs.platform.session.SlangEntity;
 import in.slanglabs.platform.session.SlangResolvedIntent;
 import in.slanglabs.platform.session.SlangSession;
-import in.slanglabs.platform.ui.SlangScreenContext;
 
 public class VoiceInterface {
 

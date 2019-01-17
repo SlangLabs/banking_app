@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".slang.OrderCheque">
+    tools:context=".OrderCheque">
     <TextView
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
@@ -24,12 +24,14 @@
         android:layout_marginLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/communication_address"/>
+        android:text="@string/registered_address"/>
     <EditText
         android:layout_marginTop="4dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:inputType="textCapSentences|textMultiLine"
+        android:text="@string/reg_address"
+        android:enabled="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <Button
