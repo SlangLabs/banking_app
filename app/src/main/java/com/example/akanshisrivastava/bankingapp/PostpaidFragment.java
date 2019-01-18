@@ -159,6 +159,6 @@ public class PostpaidFragment extends Fragment {
     }
 
     public interface OnFragmentPostInteractionListener {
-        public void onFragmentInteraction(String title);
+        void onFragmentInteraction(String title);
     }
 }

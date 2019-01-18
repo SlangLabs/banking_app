@@ -47,21 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/remarks"
-                android:textSize="16sp"/>
-
-            <EditText
-                android:id="@+id/transfer_remarks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:inputType="text"
-                android:hint="@string/enter_remarks" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="@string/transfer_type"
                 android:textSize="16sp"/>
 

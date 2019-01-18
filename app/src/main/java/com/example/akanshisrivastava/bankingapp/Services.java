@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.akanshisrivastava.bankingapp.slang.ActivityDetector;
+
 public class Services extends AppCompatActivity {
 
     Button request, cheque;
@@ -29,6 +31,10 @@ public class Services extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Services.this, OrderCheque.class);
+                intent.putExtra(
+                        ActivityDetector.ORDER_CHEQUE_MODE,
+                        ActivityDetector.ORDER_CHEQUE_DEFAULT
+                );
                 startActivity(intent);
             }
         });

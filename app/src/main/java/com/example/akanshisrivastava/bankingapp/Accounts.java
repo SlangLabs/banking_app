@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.akanshisrivastava.bankingapp.slang.ActivityDetector;
+
 public class Accounts extends AppCompatActivity {
 
     Button services, recent, account;
@@ -40,6 +42,7 @@ public class Accounts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Accounts.this, AccountStatement.class);
+                intent.putExtra(ActivityDetector.VIEW_STATEMENT_MODE, ActivityDetector.VIEW_STATEMENT_DEFAULT);
                 startActivity(intent);
             }
         });

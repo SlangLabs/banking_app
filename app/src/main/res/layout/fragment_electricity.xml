@@ -37,6 +37,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="@string/amount"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/electricity_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:inputType="numberDecimal"
+        android:hint="@string/_0_0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/from_which_account"
         android:textSize="15sp"/>
     <Spinner

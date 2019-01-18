@@ -19,17 +19,31 @@ public class ActivityDetector {
     public static final String PAYMENT_WATER = "payment_water";
     public static final String PAYMENT_TAX = "payment_tax";
 
+    public static final String VIEW_STATEMENT_MODE = "account_statement_mode";
+    public static final String VIEW_STATEMENT_DEFAULT = "account_statement_default";
+    public static final String VIEW_STATEMENT_LAST_MONTH = "account_statement_last_month";
+    public static final String VIEW_STATEMENT_DATE = "account_statement_date";
+
+    public static final String ORDER_CHEQUE_MODE = "cheque_mode";
+    public static final String ORDER_CHEQUE_DEFAULT = "cheque_default";
+    public static final String ORDER_CHEQUE_SLANG = "cheque_slang";
+
     public static final String ENTITY_BILL = "bill";
     public static final String ENTITY_PAYEE = "payee";
     public static final String ENTITY_AMOUNT = "amount";
     public static final String ENTITY_PAYMENT = "payment";
     public static final String ENTITY_DATE = "date";
-
+    public static final String ENTITY_START = "start";
+    public static final String ENTITY_END = "end";
+    public static final String ENTITY_MONTH = "month";
 
     public static final String ENTITY_VALUE_ELEC = "electricity";
     public static final String ENTITY_VALUE_WATER = "water";
     public static final String ENTITY_VALUE_BROADBAND = "broadband";
     public static final String ENTITY_VALUE_POSTPAID = "postpaid";
+
+    public static final String ENTITY_VALUE_LAST_MONTH = "month";
+    public static final String ENTITY_VALUE_LAST_THREE_MONTHS = "three months";
 
     public static final String ENTITY_VALUE_NEFT = "NEFT";
     public static final String ENTITY_VALUE_IMPS = "IMPS";

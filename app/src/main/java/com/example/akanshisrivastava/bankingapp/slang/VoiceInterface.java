@@ -29,11 +29,12 @@ public class VoiceInterface {
 
     private static Application appContext;
     private static final String TAG = VoiceInterface.class.getSimpleName();
-    private static boolean callAction;
+    private static boolean callAction, defaultMode;
     private static int amount;
-    private static String date, payee, payment;
+    private static String date, payee, payment, month, start, end;
 
-    public static void init(final Application context, String appId, String authKey, final boolean shouldHide) throws SlangLocaleException {
+    public static void init(final Application context, String appId, String authKey,
+                            final boolean shouldHide) throws SlangLocaleException {
         appContext = context;
         Log.d(TAG, "Calling init");
         SlangApplication.initialize(appContext, appId, authKey,
@@ -54,7 +55,7 @@ public class VoiceInterface {
 
             @Override
             public void onInitializationFailed(FailureReason failureReason) {
-                Toast.makeText(appContext, "Not able to initialize", Toast.LENGTH_LONG).show();
+                Toast.makeText(appContext, "Slang not initialized", Toast.LENGTH_LONG).show();
                 Log.d(TAG, "________________ " + failureReason);
             }
         });
@@ -64,7 +65,8 @@ public class VoiceInterface {
         SlangApplication.getIntentDescriptor(ActivityDetector.INTENT_VIEW_ACCOUNT_SUMMARY)
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
-                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
+                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent,
+                                                      SlangSession slangSession) {
                         Intent intent = new Intent(appContext, Accounts.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         appContext.startActivity(intent);
@@ -75,7 +77,8 @@ public class VoiceInterface {
         SlangApplication.getIntentDescriptor(ActivityDetector.INTENT_VIEW_RECENT_TRANSACTIONS)
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
-                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
+                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent,
+                                                      SlangSession slangSession) {
                         Intent intent = new Intent(appContext, RecentTransactions.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         appContext.startActivity(intent);
@@ -86,18 +89,83 @@ public class VoiceInterface {
         SlangApplication.getIntentDescriptor(ActivityDetector.INTENT_VIEW_ACCOUNT_STATEMENT)
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
-                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
+                    public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent,
+                                                                       SlangSession session) {
+                        defaultMode = true;
+                        month = "";
+                        start = "";
+                        end = "";
+                        return super.onIntentResolutionBegin(intent, session);
+                    }
+
+                    @Override
+                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent,
+                                                      SlangSession slangSession) {
                         Intent intent = new Intent(appContext, AccountStatement.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if(defaultMode)
+                            intent.putExtra(
+                                    ActivityDetector.VIEW_STATEMENT_MODE,
+                                    ActivityDetector.VIEW_STATEMENT_DEFAULT
+                            );
+                        else {
+                            if(!month.isEmpty()) {
+                                intent.putExtra(
+                                        ActivityDetector.VIEW_STATEMENT_MODE,
+                                        ActivityDetector.VIEW_STATEMENT_LAST_MONTH
+                                );
+                                intent.putExtra(ActivityDetector.ENTITY_MONTH, month);
+                            }
+                            else if(!start.isEmpty()) {
+                                intent.putExtra(
+                                        ActivityDetector.VIEW_STATEMENT_MODE,
+                                        ActivityDetector.VIEW_STATEMENT_DATE
+                                );
+                                intent.putExtra(ActivityDetector.ENTITY_START, start);
+                                if(!end.isEmpty())
+                                    intent.putExtra(ActivityDetector.ENTITY_END, end);
+                            }
+                        }
                         appContext.startActivity(intent);
                         return slangSession.success();
+                    }
+
+                    @Override
+                    public SlangSession.Status onEntityResolved(SlangEntity entity,
+                                                                SlangSession session) {
+                        Log.d(TAG, "Entity resolved is " + entity.getName() + " & value is "
+                                + entity.getValue());
+                        switch (entity.getName()) {
+                            case ActivityDetector.ENTITY_MONTH:
+                                month = entity.getValue();
+                                defaultMode = false;
+                                return session.success();
+                            case ActivityDetector.ENTITY_START:
+                                String year = entity.getValue().substring(0,4);
+                                String month = entity.getValue().substring(5,7);
+                                String date = entity.getValue().substring(8);
+                                Log.d(TAG, "Year is " + year);
+                                start = date + "/" + month + "/" + year;
+                                defaultMode = false;
+                                return session.success();
+                            case ActivityDetector.ENTITY_END:
+                                year = entity.getValue().substring(0,4);
+                                month = entity.getValue().substring(5,7);
+                                date = entity.getValue().substring(8);
+                                Log.d(TAG, "Year is " + year);
+                                end = date + "/" + month + "/" + year;
+                                defaultMode = false;
+                                return session.success();
+                        }
+                        return super.onEntityResolved(entity, session);
                     }
                 });
 
         SlangApplication.getIntentDescriptor(ActivityDetector.INTENT_REQUEST_ACCOUNT_STATEMENT)
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
-                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
+                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent,
+                                                      SlangSession slangSession) {
                         Intent intent = new Intent(appContext, Statement.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         appContext.startActivity(intent);
@@ -108,7 +176,8 @@ public class VoiceInterface {
         SlangApplication.getIntentDescriptor(ActivityDetector.INTENT_FUND_TRANSFER)
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
-                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
+                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent,
+                                                      SlangSession slangSession) {
                         Intent intent = new Intent(appContext, MoneyTransfer.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra(ActivityDetector.ENTITY_PAYEE, payee);
@@ -120,7 +189,8 @@ public class VoiceInterface {
                     }
 
                     @Override
-                    public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent, SlangSession session) {
+                    public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent,
+                                                                       SlangSession session) {
                         amount = 0;
                         payment = "";
                         payee = "";
@@ -129,7 +199,8 @@ public class VoiceInterface {
                     }
 
                     @Override
-                    public SlangSession.Status onEntityResolved(SlangEntity entity, SlangSession session) {
+                    public SlangSession.Status onEntityResolved(SlangEntity entity,
+                                                                SlangSession session) {
                         switch (entity.getName()) {
                             case ActivityDetector.ENTITY_AMOUNT:
                                 amount = Integer.valueOf(entity.getValue());
@@ -152,7 +223,8 @@ public class VoiceInterface {
         SlangApplication.getIntentDescriptor(ActivityDetector.INTENT_PAY_BILLS)
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
-                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
+                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent,
+                                                      SlangSession slangSession) {
                         if (callAction) {
                             Intent intent = new Intent(appContext, Bills.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -162,41 +234,55 @@ public class VoiceInterface {
                     }
 
                     @Override
-                    public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent, SlangSession session) {
+                    public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent,
+                                                                       SlangSession session) {
                         callAction = true;
                         return super.onIntentResolutionBegin(intent, session);
                     }
 
                     @Override
-                    public SlangSession.Status onEntityResolved(SlangEntity entity, SlangSession session) {
+                    public SlangSession.Status onEntityResolved(SlangEntity entity,
+                                                                SlangSession session) {
                         if(entity.getName().equals(ActivityDetector.ENTITY_BILL)) {
                             Intent intent;
                             switch (entity.getValue().toLowerCase()) {
                                 case ActivityDetector.ENTITY_VALUE_ELEC:
                                     intent = new Intent(appContext, BillPayment.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_ELEC);
+                                    intent.putExtra(
+                                            ActivityDetector.PAYMENT_MODE,
+                                            ActivityDetector.PAYMENT_ELEC
+                                    );
                                     callAction = false;
                                     appContext.startActivity(intent);
                                     return session.success();
                                 case ActivityDetector.ENTITY_VALUE_WATER:
                                     intent = new Intent(appContext, BillPayment.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_WATER);
+                                    intent.putExtra(
+                                            ActivityDetector.PAYMENT_MODE,
+                                            ActivityDetector.PAYMENT_WATER
+                                    );
                                     callAction = false;
                                     appContext.startActivity(intent);
                                     return session.success();
                                 case ActivityDetector.ENTITY_VALUE_BROADBAND:
                                     intent = new Intent(appContext, BillPayment.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_BROADBAND);
+                                    intent.putExtra(
+                                            ActivityDetector.PAYMENT_MODE,
+                                            ActivityDetector.PAYMENT_BROADBAND
+                                    );
                                     callAction = false;
                                     appContext.startActivity(intent);
                                     return session.success();
                                 case ActivityDetector.ENTITY_VALUE_POSTPAID:
                                     intent = new Intent(appContext, BillPayment.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(ActivityDetector.PAYMENT_MODE, ActivityDetector.PAYMENT_POST);
+                                    intent.putExtra(
+                                            ActivityDetector.PAYMENT_MODE,
+                                            ActivityDetector.PAYMENT_POST
+                                    );
                                     callAction = false;
                                     appContext.startActivity(intent);
                                     return session.success();
@@ -209,9 +295,14 @@ public class VoiceInterface {
         SlangApplication.getIntentDescriptor(ActivityDetector.INTENT_ORDER_CHEQUE)
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
-                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
+                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent,
+                                                      SlangSession slangSession) {
                         Intent intent = new Intent(appContext, OrderCheque.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(
+                                ActivityDetector.ORDER_CHEQUE_MODE,
+                                ActivityDetector.ORDER_CHEQUE_SLANG
+                        );
                         appContext.startActivity(intent);
                         return slangSession.success();
                     }
@@ -220,7 +311,8 @@ public class VoiceInterface {
         SlangApplication.getIntentDescriptor(ActivityDetector.INTENT_CONTACT_US)
                 .setResolutionAction(new DefaultResolvedIntentAction() {
                     @Override
-                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent, SlangSession slangSession) {
+                    public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent,
+                                                      SlangSession slangSession) {
                         Intent intent = new Intent(appContext, CustomerCare.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         appContext.startActivity(intent);

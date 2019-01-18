@@ -33,7 +33,7 @@ public class MoneyTransfer extends AppCompatActivity {
     private Button imps, neft, proceed;
     private LinearLayout neftDescription;
     private TextView description;
-    private EditText amount, remarks, payLaterDate;
+    private EditText amount, payLaterDate;
     private Spinner payeeSpinner;
     private RadioGroup neftRadio;
     private RadioButton payLaterRadioButton;
@@ -51,7 +51,6 @@ public class MoneyTransfer extends AppCompatActivity {
         description = findViewById(R.id.type_description);
 
         amount = findViewById(R.id.transfer_amount);
-        remarks = findViewById(R.id.transfer_remarks);
         payLaterDate = findViewById(R.id.pay_later_date);
         payLaterRadioButton = findViewById(R.id.pay_later);
 
@@ -116,23 +115,6 @@ public class MoneyTransfer extends AppCompatActivity {
             }
         });
 
-        remarks.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                enableSubmitIfReady();
-            }
-        });
-
         imps = findViewById(R.id.imps);
         imps.setFocusable(true);
         imps.setFocusableInTouchMode(true);
@@ -143,7 +125,6 @@ public class MoneyTransfer extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG, "onClick IMPS");
                 neftDescription.setVisibility(GONE);
-                //imps.requestFocus();
                 description.setText(R.string.imps_description);
             }
         });
@@ -166,7 +147,6 @@ public class MoneyTransfer extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG, "onClick NEFT");
                 neftDescription.setVisibility(View.VISIBLE);
-                //neftDescription.requestFocus();
                 description.setText(R.string.neft_description);
             }
         });
@@ -252,8 +232,7 @@ public class MoneyTransfer extends AppCompatActivity {
         }
         boolean spin = payeeSpinner != null && payeeSpinner.getSelectedItem() != null;
         boolean isReady = neftDate && spin && !amount.getText().toString().isEmpty() &&
-                Integer.valueOf(amount.getText().toString()) > 0 &&
-                !remarks.getText().toString().isEmpty();
+                Integer.valueOf(amount.getText().toString()) > 0;
         proceed.setEnabled(isReady);
     }
 

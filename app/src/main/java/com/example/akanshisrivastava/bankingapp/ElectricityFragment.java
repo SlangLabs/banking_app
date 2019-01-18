@@ -23,7 +23,7 @@ import com.example.akanshisrivastava.bankingapp.slang.ActivityDetector;
 public class ElectricityFragment extends Fragment {
     private Button proceed;
     private Spinner elecSpinner;
-    private EditText cn;
+    private EditText cn, amount;
     private OnFragmentElecInteractionListener mListener;
 
     @Override
@@ -65,6 +65,25 @@ public class ElectricityFragment extends Fragment {
         cn = view.findViewById(R.id.electricity_cn);
 
         cn.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                enableSubmitIfReady();
+            }
+        });
+
+        amount = view.findViewById(R.id.electricity_amount);
+
+        amount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -134,11 +153,12 @@ public class ElectricityFragment extends Fragment {
 
     private void enableSubmitIfReady() {
         boolean spin = elecSpinner != null && elecSpinner.getSelectedItem() != null;
-        boolean isReady = spin && cn.getText().toString().length() == 10;
+        boolean isReady = spin && cn.getText().toString().length() == 10 &&
+                Integer.valueOf(amount.getText().toString()) > 0;
         proceed.setEnabled(isReady);
     }
 
     public interface OnFragmentElecInteractionListener {
-        public void onFragmentInteraction(String title);
+        void onFragmentInteraction(String title);
     }
 }

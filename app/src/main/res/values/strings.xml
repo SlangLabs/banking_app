@@ -110,18 +110,18 @@
     </string-array>
 
     <string-array name="postpaid_list">
-        <item>PSNL</item>
-        <item>Kio</item>
-        <item>Butch</item>
-        <item>Freetail</item>
-        <item>Treecell</item>
+        <item>BSNL</item>
+        <item>Jio</item>
+        <item>Airtel</item>
+        <item>Vodafone</item>
+        <item>Idea</item>
     </string-array>
 
     <string-array name="landline_list">
-        <item>PSNL Broadband</item>
-        <item>Kio Broadband</item>
-        <item>TL Broadband</item>
-        <item>Freetail Broadband</item>
+        <item>BSNL</item>
+        <item>Jio</item>
+        <item>Airtel</item>
+        <item>MTNL</item>
     </string-array>
 
     <string-array name="account_number">

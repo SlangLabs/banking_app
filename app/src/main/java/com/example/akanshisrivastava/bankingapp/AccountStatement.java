@@ -1,5 +1,6 @@
 package com.example.akanshisrivastava.bankingapp;
 
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,17 +9,21 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.akanshisrivastava.bankingapp.adapters.DatePickerFragment;
 import com.example.akanshisrivastava.bankingapp.adapters.RecentTransactionsAdapter;
 import com.example.akanshisrivastava.bankingapp.network.RecentTransactionsPojo;
+import com.example.akanshisrivastava.bankingapp.slang.ActivityDetector;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,15 +33,20 @@ import java.util.List;
 
 public class AccountStatement extends AppCompatActivity {
 
+    private static final String TAG = AccountStatement.class.getSimpleName();
+
     private LinearLayout transactionLayout;
     private RadioGroup radioGroup;
+    private RadioButton lastMonth, lastThreeMonths;
     private Button proceed;
     private TextView noMatch;
     private static EditText start, end;
     private RecentTransactionsAdapter adapter;
     private RecyclerView recyclerView;
     private List<RecentTransactionsPojo> recentTransactions;
-    private static boolean startFocus, endFocus;
+    public static final String DATE_SELECTOR = "date_selector";
+    public static final String DATE_START = "date_start";
+    public static final String DATE_END = "date_end";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +54,13 @@ public class AccountStatement extends AppCompatActivity {
         setContentView(R.layout.activity_account_statement);
         getSupportActionBar().setTitle("Account Statement");
 
+        Intent intent = getIntent();
+        String mode = intent.getStringExtra(ActivityDetector.VIEW_STATEMENT_MODE);
+
         transactionLayout = findViewById(R.id.vs_linear_layout_transactions);
         radioGroup = findViewById(R.id.vs_radio_group);
+        lastMonth = findViewById(R.id.vs_last_month);
+        lastThreeMonths = findViewById(R.id.vs_last_three_months);
         proceed = findViewById(R.id.vs_proceed);
         noMatch = findViewById(R.id.no_match);
         start = findViewById(R.id.vs_start);
@@ -169,46 +184,51 @@ public class AccountStatement extends AppCompatActivity {
                 enableSubmitIfRead();
             }
         });
-        start.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    startFocus = true;
-                    endFocus = false;
-                    radioGroup.clearCheck();
-                    v.performClick();
-                }
-                else
-                    startFocus = false;
-            }
-        });
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                radioGroup.clearCheck();
                 DialogFragment newFragment = new DatePickerFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(DATE_SELECTOR, DATE_START);
+                newFragment.setArguments(bundle);
                 newFragment.show(getSupportFragmentManager(), "datePicker");
-            }
-        });
-        end.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    endFocus = true;
-                    startFocus = false;
-                    radioGroup.clearCheck();
-                    v.performClick();
-                }
-                else
-                    endFocus = false;
             }
         });
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                radioGroup.clearCheck();
                 DialogFragment newFragment = new DatePickerFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(DATE_SELECTOR, DATE_END);
+                newFragment.setArguments(bundle);
                 newFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
+
+        if(mode.equals(ActivityDetector.VIEW_STATEMENT_LAST_MONTH)) {
+            String month = intent.getStringExtra(ActivityDetector.ENTITY_MONTH);
+            if(month.equalsIgnoreCase(ActivityDetector.ENTITY_VALUE_LAST_MONTH)) {
+                lastMonth.setChecked(true);
+                proceed.callOnClick();
+            } else if(month.equalsIgnoreCase(ActivityDetector.ENTITY_VALUE_LAST_THREE_MONTHS)) {
+                lastThreeMonths.setChecked(true);
+                proceed.callOnClick();
+            }
+        } else if(mode.equals(ActivityDetector.VIEW_STATEMENT_DATE)) {
+            String startDate = intent.getStringExtra(ActivityDetector.ENTITY_START);
+            String endDate = intent.getStringExtra(ActivityDetector.ENTITY_END);
+            if (endDate==null || endDate.isEmpty()) {
+                Date date = new Date();
+                String strDateFormat = "dd/MM/yyyy";
+                DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+                endDate = dateFormat.format(date);
+            }
+            start.setText(startDate);
+            end.setText(endDate);
+            proceed.callOnClick();
+        }
     }
 
     private void enableSubmitIfRead() {
@@ -218,10 +238,10 @@ public class AccountStatement extends AppCompatActivity {
         proceed.setEnabled(isReady);
     }
 
-    public static void setDateSet(String dateSet) {
-        if(startFocus && !endFocus)
+    public static void setDateSet(String dateSet, String mode) {
+        if(mode.equals(DATE_START))
             start.setText(dateSet);
-        else if(!startFocus && endFocus)
+        else
             end.setText(dateSet);
     }
 }

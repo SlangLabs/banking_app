@@ -18,6 +18,15 @@ import com.example.akanshisrivastava.bankingapp.Statement;
 import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    private static String mode;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null)
+            mode = bundle.getString(AccountStatement.DATE_SELECTOR);
+    }
 
     @NonNull
     @Override
@@ -39,7 +48,8 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
             EditText editText = activity.findViewById(R.id.request_date);
             editText.setText(date);
         } else if (activity instanceof AccountStatement) {
-            AccountStatement.setDateSet(date);
+            if(mode != null)
+                AccountStatement.setDateSet(date, mode);
         } else if (activity instanceof MoneyTransfer) {
             EditText editText = activity.findViewById(R.id.pay_later_date);
             editText.setText(date);
