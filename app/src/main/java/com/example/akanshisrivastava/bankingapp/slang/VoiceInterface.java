@@ -29,9 +29,9 @@ public class VoiceInterface {
 
     private static Application appContext;
     private static final String TAG = VoiceInterface.class.getSimpleName();
-    private static boolean callAction, defaultMode;
+    private static boolean defaultMode;
     private static int amount;
-    private static String date, payee, payment, month, start, end;
+    private static String date, payee, payment, month, start, end, mode;
 
     public static void init(final Application context, String appId, String authKey,
                             final boolean shouldHide) throws SlangLocaleException {
@@ -41,24 +41,24 @@ public class VoiceInterface {
                 SlangApplication.getSupportedLocales(),
                 SlangApplication.LOCALE_ENGLISH_IN,
                 new ISlangApplicationStateListener() {
-            @Override
-            public void onInitialized() {
-                try {
-                    registerActionsNew();
-                } catch (SlangApplicationUninitializedException e) {
-                    Toast.makeText(
-                            appContext,
-                            "Slang uninitialized - " + e.getLocalizedMessage(),
-                            Toast.LENGTH_LONG).show();
-                }
-            }
+                    @Override
+                    public void onInitialized() {
+                        try {
+                            registerActionsNew();
+                        } catch (SlangApplicationUninitializedException e) {
+                            Toast.makeText(
+                                    appContext,
+                                    "Slang uninitialized - " + e.getLocalizedMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
 
-            @Override
-            public void onInitializationFailed(FailureReason failureReason) {
-                Toast.makeText(appContext, "Slang not initialized", Toast.LENGTH_LONG).show();
-                Log.d(TAG, "________________ " + failureReason);
-            }
-        });
+                    @Override
+                    public void onInitializationFailed(FailureReason failureReason) {
+                        Toast.makeText(appContext, "Slang not initialized", Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "________________ " + failureReason);
+                    }
+                });
     }
 
     private static void registerActionsNew() throws SlangApplicationUninitializedException {
@@ -103,31 +103,40 @@ public class VoiceInterface {
                                                       SlangSession slangSession) {
                         Intent intent = new Intent(appContext, AccountStatement.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        if(defaultMode)
+                        if (defaultMode) {
                             intent.putExtra(
                                     ActivityDetector.VIEW_STATEMENT_MODE,
                                     ActivityDetector.VIEW_STATEMENT_DEFAULT
                             );
+                            appContext.startActivity(intent);
+                            slangResolvedIntent
+                                    .getCompletionStatement()
+                                    .overrideAffirmative(
+                                            getCompletionPrompt(
+                                                    ActivityDetector.VIEW_STATEMENT_MODE
+                                            )
+                                    );
+                            return slangSession.success();
+                        }
                         else {
-                            if(!month.isEmpty()) {
+                            if (!month.isEmpty()) {
                                 intent.putExtra(
                                         ActivityDetector.VIEW_STATEMENT_MODE,
                                         ActivityDetector.VIEW_STATEMENT_LAST_MONTH
                                 );
                                 intent.putExtra(ActivityDetector.ENTITY_MONTH, month);
-                            }
-                            else if(!start.isEmpty()) {
+                            } else if (!start.isEmpty()) {
                                 intent.putExtra(
                                         ActivityDetector.VIEW_STATEMENT_MODE,
                                         ActivityDetector.VIEW_STATEMENT_DATE
                                 );
                                 intent.putExtra(ActivityDetector.ENTITY_START, start);
-                                if(!end.isEmpty())
+                                if (!end.isEmpty())
                                     intent.putExtra(ActivityDetector.ENTITY_END, end);
                             }
+                            appContext.startActivity(intent);
+                            return slangSession.success();
                         }
-                        appContext.startActivity(intent);
-                        return slangSession.success();
                     }
 
                     @Override
@@ -141,16 +150,16 @@ public class VoiceInterface {
                                 defaultMode = false;
                                 return session.success();
                             case ActivityDetector.ENTITY_START:
-                                String year = entity.getValue().substring(0,4);
-                                String month = entity.getValue().substring(5,7);
+                                String year = entity.getValue().substring(0, 4);
+                                String month = entity.getValue().substring(5, 7);
                                 String date = entity.getValue().substring(8);
                                 Log.d(TAG, "Year is " + year);
                                 start = date + "/" + month + "/" + year;
                                 defaultMode = false;
                                 return session.success();
                             case ActivityDetector.ENTITY_END:
-                                year = entity.getValue().substring(0,4);
-                                month = entity.getValue().substring(5,7);
+                                year = entity.getValue().substring(0, 4);
+                                month = entity.getValue().substring(5, 7);
                                 date = entity.getValue().substring(8);
                                 Log.d(TAG, "Year is " + year);
                                 end = date + "/" + month + "/" + year;
@@ -185,6 +194,13 @@ public class VoiceInterface {
                         intent.putExtra(ActivityDetector.ENTITY_PAYMENT, payment);
                         intent.putExtra(ActivityDetector.ENTITY_DATE, date);
                         appContext.startActivity(intent);
+                        if (!(amount == 0 && payment.isEmpty() && payee.isEmpty() &&
+                                date.isEmpty()))
+                            slangResolvedIntent
+                                    .getCompletionStatement()
+                                    .overrideAffirmative(
+                                            getCompletionPrompt(ActivityDetector.TRANSFER_MODE)
+                                    );
                         return slangSession.success();
                     }
 
@@ -225,68 +241,59 @@ public class VoiceInterface {
                     @Override
                     public SlangSession.Status action(SlangResolvedIntent slangResolvedIntent,
                                                       SlangSession slangSession) {
-                        if (callAction) {
+                        if(mode.isEmpty()) {
                             Intent intent = new Intent(appContext, Bills.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             appContext.startActivity(intent);
+                            return slangSession.success();
                         }
-                        return slangSession.success();
+                        else {
+                            Intent intent = new Intent(appContext, BillPayment.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra(ActivityDetector.PAYMENT_MODE, mode);
+                            if (amount > 0)
+                                intent.putExtra(ActivityDetector.ENTITY_AMOUNT, amount);
+                            else
+                                slangResolvedIntent
+                                        .getCompletionStatement()
+                                        .overrideAffirmative(
+                                                getCompletionPrompt(ActivityDetector.PAYMENT_MODE)
+                                        );
+                            appContext.startActivity(intent);
+                            return slangSession.success();
+                        }
                     }
 
                     @Override
-                    public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent,
-                                                                       SlangSession session) {
-                        callAction = true;
+                    public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent, SlangSession session) {
+                        mode = "";
+                        amount = 0;
                         return super.onIntentResolutionBegin(intent, session);
                     }
 
                     @Override
                     public SlangSession.Status onEntityResolved(SlangEntity entity,
                                                                 SlangSession session) {
-                        if(entity.getName().equals(ActivityDetector.ENTITY_BILL)) {
-                            Intent intent;
-                            switch (entity.getValue().toLowerCase()) {
+                        Log.d(TAG, "Entity value " + entity.getValue());
+                        if (entity.getName().equals(ActivityDetector.ENTITY_BILL)) {
+                            switch (entity.getValue()) {
                                 case ActivityDetector.ENTITY_VALUE_ELEC:
-                                    intent = new Intent(appContext, BillPayment.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(
-                                            ActivityDetector.PAYMENT_MODE,
-                                            ActivityDetector.PAYMENT_ELEC
-                                    );
-                                    callAction = false;
-                                    appContext.startActivity(intent);
+                                    mode = ActivityDetector.PAYMENT_ELEC;
                                     return session.success();
                                 case ActivityDetector.ENTITY_VALUE_WATER:
-                                    intent = new Intent(appContext, BillPayment.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(
-                                            ActivityDetector.PAYMENT_MODE,
-                                            ActivityDetector.PAYMENT_WATER
-                                    );
-                                    callAction = false;
-                                    appContext.startActivity(intent);
+                                    mode = ActivityDetector.PAYMENT_WATER;
                                     return session.success();
                                 case ActivityDetector.ENTITY_VALUE_BROADBAND:
-                                    intent = new Intent(appContext, BillPayment.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(
-                                            ActivityDetector.PAYMENT_MODE,
-                                            ActivityDetector.PAYMENT_BROADBAND
-                                    );
-                                    callAction = false;
-                                    appContext.startActivity(intent);
+                                    mode = ActivityDetector.PAYMENT_BROADBAND;
                                     return session.success();
                                 case ActivityDetector.ENTITY_VALUE_POSTPAID:
-                                    intent = new Intent(appContext, BillPayment.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.putExtra(
-                                            ActivityDetector.PAYMENT_MODE,
-                                            ActivityDetector.PAYMENT_POST
-                                    );
-                                    callAction = false;
-                                    appContext.startActivity(intent);
+                                    mode = ActivityDetector.PAYMENT_POST;
                                     return session.success();
                             }
+                        } else if(entity.getName().equals(ActivityDetector.ENTITY_AMOUNT)) {
+                            amount = Integer.valueOf(entity.getValue());
+                            Log.d(TAG, "Amount value is " + amount);
+                            return session.success();
                         }
                         return super.onEntityResolved(entity, session);
                     }
@@ -319,6 +326,16 @@ public class VoiceInterface {
                         return slangSession.success();
                     }
                 });
+    }
+
+    private static String getCompletionPrompt(String mode) {
+        switch (mode){
+            case ActivityDetector.PAYMENT_MODE:
+            case ActivityDetector.VIEW_STATEMENT_MODE:
+            case ActivityDetector.TRANSFER_MODE:
+                return "Please enter the remaining details to proceed.";
+        }
+        return null;
     }
 }
 

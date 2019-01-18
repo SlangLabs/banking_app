@@ -96,8 +96,13 @@ public class PostpaidFragment extends Fragment {
 
         Bundle bundle = getArguments();
         String mode = "";
-        if (bundle != null)
+        int amountPay = 0;
+        if (bundle != null) {
             mode = bundle.getString(ActivityDetector.PAYMENT_MODE);
+            amountPay = bundle.getInt(ActivityDetector.ENTITY_AMOUNT);
+            if (amountPay > 0)
+                amount.setText(String.valueOf(amountPay));
+        }
         if (mode.equals(ActivityDetector.PAYMENT_BROADBAND)) {
             textView.setText(R.string.broadband_number);
             number.setHint(R.string.broadband_hint);

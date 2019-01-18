@@ -38,8 +38,11 @@ public class ElectricityFragment extends Fragment {
 
         Bundle bundle = getArguments();
         String mode = "";
-        if (bundle != null)
+        int amountPay = 0;
+        if (bundle != null) {
             mode = bundle.getString(ActivityDetector.PAYMENT_MODE);
+            amountPay = bundle.getInt(ActivityDetector.ENTITY_AMOUNT);
+        }
 
         proceed = view.findViewById(R.id.electricity_proceed);
         proceed.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +104,9 @@ public class ElectricityFragment extends Fragment {
         });
 
         ArrayAdapter<CharSequence> elecAdapter;
+
+        if (amountPay > 0)
+            amount.setText(String.valueOf(amountPay));
 
         if(mode.equals(ActivityDetector.PAYMENT_ELEC)) {
             elecAdapter = ArrayAdapter.createFromResource(

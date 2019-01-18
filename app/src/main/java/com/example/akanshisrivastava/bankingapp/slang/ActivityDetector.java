@@ -11,6 +11,8 @@ public class ActivityDetector {
     public static final String INTENT_ORDER_CHEQUE = "order_cheque";
     public static final String INTENT_CONTACT_US = "contact_us";
 
+    public static final String TRANSFER_MODE = "transfer_mode";
+
     public static final String PAYMENT_MODE = "payment_mode";
     public static final String PAYMENT_CREDIT = "payment_credit";
     public static final String PAYMENT_ELEC = "payment_elec";
