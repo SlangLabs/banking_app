@@ -97,9 +97,11 @@ public class PostpaidFragment extends Fragment {
         Bundle bundle = getArguments();
         String mode = "";
         int amountPay = 0;
+        String vendor = "";
         if (bundle != null) {
             mode = bundle.getString(ActivityDetector.PAYMENT_MODE);
             amountPay = bundle.getInt(ActivityDetector.ENTITY_AMOUNT);
+            vendor = bundle.getString(ActivityDetector.ENTITY_VENDOR_NAME);
             if (amountPay > 0)
                 amount.setText(String.valueOf(amountPay));
         }
@@ -108,7 +110,7 @@ public class PostpaidFragment extends Fragment {
             number.setHint(R.string.broadband_hint);
             adapter = ArrayAdapter.createFromResource(
                     getContext(),
-                    R.array.landline_list,
+                    R.array.broadband_list,
                     android.R.layout.simple_spinner_item);
             if (mListener != null) {
                 mListener.onFragmentInteraction("Broadband Bill");
@@ -137,6 +139,14 @@ public class PostpaidFragment extends Fragment {
                 R.layout.spinner_row_nothing_selected_elec,
                 getContext()
         ));
+        if (vendor != null && !vendor.isEmpty()) {
+            for(int i = 1; i < postSpinner.getCount(); i++) {
+                if (postSpinner.getItemAtPosition(i).equals(vendor)) {
+                    postSpinner.setSelection(i);
+                    break;
+                }
+            }
+        }
         return view;
     }
     @Override

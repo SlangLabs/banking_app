@@ -99,14 +99,14 @@
     </string-array>
 
     <string-array name="elec_list">
-        <item>Home Power</item>
-        <item>City Electricity</item>
-        <item>State Power Corporation</item>
-        <item>Sill Power Ltd</item>
+        <item>Tata Power</item>
+        <item>BESCOM</item>
+        <item>Reliance Power</item>
+        <item>KESCO</item>
     </string-array>
 
     <string-array name="water_list">
-        <item>City Municipal Corporation</item>
+        <item>State Water Corporation</item>
     </string-array>
 
     <string-array name="postpaid_list">
@@ -117,7 +117,7 @@
         <item>Idea</item>
     </string-array>
 
-    <string-array name="landline_list">
+    <string-array name="broadband_list">
         <item>BSNL</item>
         <item>Jio</item>
         <item>Airtel</item>

@@ -152,12 +152,16 @@ public class AccountStatement extends AppCompatActivity {
                     String requiredEnd = end.getText().toString();
                     for (int i = 0; i < recentTransactions.size(); i++) {
                         try {
-                            if((sdf.parse(recentTransactions.get(i).date)).after(sdf.parse(requiredStart)) &&
-                                    (sdf.parse(recentTransactions.get(i).date)).before(sdf.parse(requiredEnd))) {
+                            Date requiredStartDate = sdf.parse(requiredStart);
+                            Date requiredEndDate = sdf.parse(requiredEnd);
+                            Date currentDate = sdf.parse(recentTransactions.get(i).date);
+                            if ((currentDate.after(requiredStartDate) ||
+                                    currentDate.equals(requiredStartDate)) &&
+                                    (currentDate.before(requiredEndDate) ||
+                                            currentDate.equals(requiredEndDate))) {
                                 recentTransactionsMonth.add(recentTransactions.get(i));
-                            }
-                            else if (!(sdf.parse(recentTransactions.get(i).date)).after(sdf.parse(requiredStart)) &&
-                                    !(sdf.parse(recentTransactions.get(i).date)).before(sdf.parse(requiredEnd))) {
+                            } else if (!currentDate.after(requiredStartDate) &&
+                                    !currentDate.before(requiredEndDate)) {
                                 break;
                             }
                         } catch (ParseException e) {

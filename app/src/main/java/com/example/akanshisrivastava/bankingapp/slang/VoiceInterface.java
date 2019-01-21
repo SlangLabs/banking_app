@@ -13,8 +13,15 @@ import com.example.akanshisrivastava.bankingapp.Bills;
 import com.example.akanshisrivastava.bankingapp.CustomerCare;
 import com.example.akanshisrivastava.bankingapp.MoneyTransfer;
 import com.example.akanshisrivastava.bankingapp.OrderCheque;
+import com.example.akanshisrivastava.bankingapp.R;
 import com.example.akanshisrivastava.bankingapp.RecentTransactions;
 import com.example.akanshisrivastava.bankingapp.Statement;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 
 import in.slanglabs.platform.application.ISlangApplicationStateListener;
 import in.slanglabs.platform.application.SlangApplication;
@@ -31,7 +38,7 @@ public class VoiceInterface {
     private static final String TAG = VoiceInterface.class.getSimpleName();
     private static boolean defaultMode;
     private static int amount;
-    private static String date, payee, payment, month, start, end, mode;
+    private static String date, payee, payment, month, start, end, mode, vendor;
 
     public static void init(final Application context, String appId, String authKey,
                             final boolean shouldHide) throws SlangLocaleException {
@@ -155,6 +162,21 @@ public class VoiceInterface {
                                 String date = entity.getValue().substring(8);
                                 Log.d(TAG, "Year is " + year);
                                 start = date + "/" + month + "/" + year;
+                                Date dateValue = new Date();
+                                SimpleDateFormat dateFormat =
+                                        new SimpleDateFormat("dd/MM/yyyy");
+                                Date startDate;
+                                try {
+                                    startDate = dateFormat.parse(start);
+                                    if (!(dateValue.compareTo(startDate) > 0)) {
+                                        int yearInt = Integer.parseInt(year);
+                                        yearInt--;
+                                        year = String.valueOf(yearInt);
+                                    }
+                                    start = date + "/" + month + "/" + year;
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
                                 defaultMode = false;
                                 return session.success();
                             case ActivityDetector.ENTITY_END:
@@ -253,12 +275,39 @@ public class VoiceInterface {
                             intent.putExtra(ActivityDetector.PAYMENT_MODE, mode);
                             if (amount > 0)
                                 intent.putExtra(ActivityDetector.ENTITY_AMOUNT, amount);
-                            else
-                                slangResolvedIntent
-                                        .getCompletionStatement()
-                                        .overrideAffirmative(
-                                                getCompletionPrompt(ActivityDetector.PAYMENT_MODE)
-                                        );
+                            if (!vendor.isEmpty()) {
+                                switch (mode) {
+                                    case ActivityDetector.PAYMENT_ELEC:
+                                        ArrayList<String> elecList =
+                                                new ArrayList<>(Arrays.asList(appContext.getResources().getStringArray(R.array.elec_list)));
+                                        if (elecList.contains(vendor))
+                                            intent.putExtra(ActivityDetector.ENTITY_VENDOR_NAME, vendor);
+                                        break;
+                                    case ActivityDetector.PAYMENT_WATER:
+                                        ArrayList<String> waterList =
+                                                new ArrayList<>(Arrays.asList(appContext.getResources().getStringArray(R.array.water_list)));
+                                        if (waterList.contains(vendor))
+                                            intent.putExtra(ActivityDetector.ENTITY_VENDOR_NAME, vendor);
+                                        break;
+                                    case ActivityDetector.PAYMENT_BROADBAND:
+                                        ArrayList<String> broadList =
+                                                new ArrayList<>(Arrays.asList(appContext.getResources().getStringArray(R.array.broadband_list)));
+                                        if (broadList.contains(vendor))
+                                            intent.putExtra(ActivityDetector.ENTITY_VENDOR_NAME, vendor);
+                                        break;
+                                    case ActivityDetector.PAYMENT_POST:
+                                        ArrayList<String> postList =
+                                                new ArrayList<>(Arrays.asList(appContext.getResources().getStringArray(R.array.postpaid_list)));
+                                        if (postList.contains(vendor))
+                                            intent.putExtra(ActivityDetector.ENTITY_VENDOR_NAME, vendor);
+                                        break;
+                                }
+                            }
+                            slangResolvedIntent
+                                    .getCompletionStatement()
+                                    .overrideAffirmative(
+                                            getCompletionPrompt(ActivityDetector.PAYMENT_MODE)
+                                    );
                             appContext.startActivity(intent);
                             return slangSession.success();
                         }
@@ -267,6 +316,7 @@ public class VoiceInterface {
                     @Override
                     public SlangSession.Status onIntentResolutionBegin(SlangResolvedIntent intent, SlangSession session) {
                         mode = "";
+                        vendor = "";
                         amount = 0;
                         return super.onIntentResolutionBegin(intent, session);
                     }
@@ -294,6 +344,9 @@ public class VoiceInterface {
                             amount = Integer.valueOf(entity.getValue());
                             Log.d(TAG, "Amount value is " + amount);
                             return session.success();
+                        } else if(entity.getName().equals(ActivityDetector.ENTITY_VENDOR_NAME)) {
+                            vendor = entity.getValue();
+                            Log.d(TAG, "Vendor name is " + vendor);
                         }
                         return super.onEntityResolved(entity, session);
                     }
@@ -333,7 +386,7 @@ public class VoiceInterface {
             case ActivityDetector.PAYMENT_MODE:
             case ActivityDetector.VIEW_STATEMENT_MODE:
             case ActivityDetector.TRANSFER_MODE:
-                return "Please enter the remaining details to proceed.";
+                return "Please enter all details to proceed.";
         }
         return null;
     }

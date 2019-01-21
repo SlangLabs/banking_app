@@ -39,9 +39,11 @@ public class ElectricityFragment extends Fragment {
         Bundle bundle = getArguments();
         String mode = "";
         int amountPay = 0;
+        String vendor = "";
         if (bundle != null) {
             mode = bundle.getString(ActivityDetector.PAYMENT_MODE);
             amountPay = bundle.getInt(ActivityDetector.ENTITY_AMOUNT);
+            vendor = bundle.getString(ActivityDetector.ENTITY_VENDOR_NAME);
         }
 
         proceed = view.findViewById(R.id.electricity_proceed);
@@ -137,6 +139,14 @@ public class ElectricityFragment extends Fragment {
                 R.layout.spinner_row_nothing_selected_elec,
                 getContext()
         ));
+        if (vendor != null && !vendor.isEmpty()) {
+            for(int i = 1; i < elecSpinner.getCount(); i++) {
+                if (elecSpinner.getItemAtPosition(i).equals(vendor)) {
+                    elecSpinner.setSelection(i);
+                    break;
+                }
+            }
+        }
         return view;
     }
 

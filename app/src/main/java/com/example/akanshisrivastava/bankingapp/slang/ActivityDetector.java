@@ -33,6 +33,7 @@ public class ActivityDetector {
     public static final String ENTITY_BILL = "bill";
     public static final String ENTITY_PAYEE = "payee";
     public static final String ENTITY_AMOUNT = "amount";
+    public static final String ENTITY_VENDOR_NAME = "vendor_name";
     public static final String ENTITY_PAYMENT = "payment";
     public static final String ENTITY_DATE = "date";
     public static final String ENTITY_START = "start";

@@ -21,11 +21,13 @@ public class BillPayment extends AppCompatActivity implements
         Intent intent = getIntent();
         String mode = intent.getStringExtra(ActivityDetector.PAYMENT_MODE);
         int amount = intent.getIntExtra(ActivityDetector.ENTITY_AMOUNT, 0);
+        String vendor = intent.getStringExtra(ActivityDetector.ENTITY_VENDOR_NAME);
 
         if (savedInstanceState == null) {
             Bundle bundle = new Bundle();
             bundle.putString(ActivityDetector.PAYMENT_MODE, mode);
             bundle.putInt(ActivityDetector.ENTITY_AMOUNT, amount);
+            bundle.putString(ActivityDetector.ENTITY_VENDOR_NAME, vendor);
             switch (mode) {
                 case ActivityDetector.PAYMENT_ELEC:
                 case ActivityDetector.PAYMENT_WATER:
