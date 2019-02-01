@@ -1,5 +1,6 @@
 package com.example.akanshisrivastava.bankingapp.slang;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -333,9 +334,10 @@ public class VoiceInterface {
         return null;
     }
 
-    private static class BuddyListener implements SlangBuddy.Listener {
+    public static class BuddyListener implements SlangBuddy.Listener {
         @Override
-        public void onInitialized() {}
+        public void onInitialized() {
+        }
 
         @Override
         public void onInitializationFailed(SlangBuddy.InitializationError e) {}

@@ -3,8 +3,11 @@ package com.example.akanshisrivastava.bankingapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import in.slanglabs.platform.SlangBuddy;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //SlangUI.showTrigger();
         account = findViewById(R.id.account);
         transfer = findViewById(R.id.mtransfer);
         care = findViewById(R.id.care);
@@ -48,5 +50,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        try {
+            SlangBuddy.getBuiltinUI().show();
+        } catch (Exception e) {
+            Log.d("SplashScreen", "SlangBuddy not yet initialized");
+        }
     }
 }

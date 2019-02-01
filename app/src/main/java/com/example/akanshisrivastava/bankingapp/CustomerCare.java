@@ -3,10 +3,13 @@ package com.example.akanshisrivastava.bankingapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import in.slanglabs.platform.SlangBuddy;
 
 public class CustomerCare extends AppCompatActivity {
 
@@ -37,12 +40,20 @@ public class CustomerCare extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
-        //SlangUI.hideTrigger();
+        try {
+            SlangBuddy.getBuiltinUI().hide();
+        } catch (Exception e) {
+            Log.d("SplashScreen", "SlangBuddy not yet initialized");
+        }
     }
 
     @Override
     public void onBackPressed() {
-        //SlangUI.showTrigger();
+        try {
+            SlangBuddy.getBuiltinUI().show();
+        } catch (Exception e) {
+            Log.d("SplashScreen", "SlangBuddy not yet initialized");
+        }
         finish();
     }
 }

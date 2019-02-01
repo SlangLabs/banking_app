@@ -5,6 +5,9 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
+import in.slanglabs.platform.SlangBuddy;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -12,7 +15,11 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-//        SlangUI.hideTrigger();
+        try {
+            SlangBuddy.getBuiltinUI().hide();
+        } catch (Exception e) {
+            Log.d("SplashScreen", "SlangBuddy not yet initialized");
+        }
         final Handler handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             @Override

@@ -29,12 +29,6 @@ public class SlangMockApplication extends Application {
         super.onCreate();
         instance = this;
         Log.d(TAG,"inside OnCreate, calling init now");
-        /*try {
-            VoiceInterface.init(this,"5671e72eefe54307b5e32fcafdcf02ac",
-                    "c80525dd5fa146d6a3a1aba91fc5d6b9", false);
-        } catch (SlangLocaleException e) {
-            e.printStackTrace();
-        }*/
         // Create a local Client object
         VoiceInterface.init(this);
 
