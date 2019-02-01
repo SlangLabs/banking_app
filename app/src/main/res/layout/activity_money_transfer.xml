@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textSize="12sp"
-                android:textColor="@color/black"
+                android:textColor="@android:color/black"
                 android:text="@string/imps_description"/>
 
             <LinearLayout
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/account_number_text"
                     android:textSize="15sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@android:color/black"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                     android:layout_marginTop="4dp"
                     android:text="@string/bank_balance"
                     android:textSize="18sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@android:color/black"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                     android:layout_marginTop="4dp"
                     android:text="@string/inr"
                     android:textSize="18sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@android:color/black"/>
             </RelativeLayout>
             <Button
                 android:id="@+id/proceed"

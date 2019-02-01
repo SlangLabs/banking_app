@@ -6,15 +6,13 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import in.slanglabs.platform.ui.SlangUI;
-
 public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        SlangUI.hideTrigger();
+//        SlangUI.hideTrigger();
         final Handler handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             @Override

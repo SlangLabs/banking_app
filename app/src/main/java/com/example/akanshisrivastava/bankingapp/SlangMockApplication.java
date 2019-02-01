@@ -7,8 +7,6 @@ import android.util.Log;
 
 import com.example.akanshisrivastava.bankingapp.slang.VoiceInterface;
 
-import in.slanglabs.platform.application.SlangLocaleException;
-
 public class SlangMockApplication extends Application {
     private static SlangMockApplication instance;
     private static Context appContext;
@@ -31,12 +29,14 @@ public class SlangMockApplication extends Application {
         super.onCreate();
         instance = this;
         Log.d(TAG,"inside OnCreate, calling init now");
-        try {
+        /*try {
             VoiceInterface.init(this,"5671e72eefe54307b5e32fcafdcf02ac",
                     "c80525dd5fa146d6a3a1aba91fc5d6b9", false);
         } catch (SlangLocaleException e) {
             e.printStackTrace();
-        }
+        }*/
+        // Create a local Client object
+        VoiceInterface.init(this);
 
         this.setAppContext(getApplicationContext());
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
