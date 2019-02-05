@@ -1,6 +1,7 @@
 package com.example.akanshisrivastava.bankingapp;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,11 +41,17 @@ public class CustomerCare extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
-        try {
-            SlangBuddy.getBuiltinUI().hide();
-        } catch (Exception e) {
-            Log.d("SplashScreen", "SlangBuddy not yet initialized");
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SlangBuddy.getBuiltinUI().hide();
+                } catch (Exception e) {
+                    Log.d("SplashScreen", "SlangBuddy not yet initialized");
+                }
+            }
+        }, 2500);
     }
 
     @Override

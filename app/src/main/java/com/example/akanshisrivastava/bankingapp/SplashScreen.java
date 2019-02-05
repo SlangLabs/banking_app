@@ -32,10 +32,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 //pulsator.stop();
             }
-        }, 3000);
-
-
-
+        }, 1500);
 
     }
 }

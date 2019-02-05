@@ -32,7 +32,7 @@ public class OrderCheque extends AppCompatActivity {
                 builder.setMessage("Your cheque book order has been received.");
                 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // User clicked OK buttonZ
+                        // User clicked OK button
                     }
                 });
 

@@ -1,6 +1,5 @@
 package com.example.akanshisrivastava.bankingapp.slang;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import in.slanglabs.platform.SlangBuddy;
 import in.slanglabs.platform.SlangBuddyOptions;
@@ -46,7 +47,9 @@ public class VoiceInterface {
         String apiKey = "c80525dd5fa146d6a3a1aba91fc5d6b9";
         String buddyId = "5671e72eefe54307b5e32fcafdcf02ac";
 
-            SlangBuddyOptions options = new SlangBuddyOptions.Builder()
+        SlangBuddyOptions options = null;
+        try {
+            options = new SlangBuddyOptions.Builder()
                     .setContext(context)
                     .setBuddyId(buddyId)
                     .setAPIKey(apiKey)
@@ -56,7 +59,16 @@ public class VoiceInterface {
                     .setDefaultLocale(SlangLocale.LOCALE_ENGLISH_IN)
                     .setEnvironment(SlangBuddy.Environment.STAGING)
                     .build();
-            SlangBuddy.initialize(options);
+        } catch (SlangBuddyOptions.InvalidOptionException e) {
+            e.printStackTrace();
+        } catch (SlangBuddy.InsufficientPrivilegeException e) {
+            e.printStackTrace();
+        }
+        SlangBuddy.initialize(options);
+    }
+
+    private static boolean shouldForceDev() {
+        return true;
     }
 
     private static class V1Action implements SlangMultiStepIntentAction {
@@ -82,6 +94,18 @@ public class VoiceInterface {
 
         @Override
         public Status onEntityUnresolved(SlangEntity entity, SlangSession context) {
+            /*Log.d(TAG, "Entity name unresolved " + entity.getName());
+            if(entity.getIntent().getName().equals(ActivityDetector.INTENT_FUND_TRANSFER)) {
+                if(entity.getName().equals(ActivityDetector.ENTITY_PAYMENT)) {
+                    if(!date.isEmpty()) {
+                        Log.d(TAG, "Resolving");
+                        entity.resolve("NEFT");
+                        payment = "NEFT";
+                        return Status.SUCCESS;
+                    }
+                }
+            }
+            return Status.SUCCESS;*/
             return Status.SUCCESS;
         }
 
@@ -131,6 +155,7 @@ public class VoiceInterface {
                             return Status.SUCCESS;
                         case ActivityDetector.ENTITY_DATE:
                             date = entity.getValue();
+                            payment = "NEFT";
                             return Status.SUCCESS;
                     }
                     break;
@@ -171,6 +196,21 @@ public class VoiceInterface {
                             date = entity.getValue().substring(8);
                             Log.d(TAG, "Year is " + year);
                             end = date + "/" + month + "/" + year;
+                            dateValue = new Date();
+                            dateFormat =
+                                    new SimpleDateFormat("dd/MM/yyyy");
+                            Date endDate;
+                            try {
+                                endDate = dateFormat.parse(end);
+                                if (!(dateValue.compareTo(endDate) > 0)) {
+                                    int yearInt = Integer.parseInt(year);
+                                    yearInt--;
+                                    year = String.valueOf(yearInt);
+                                }
+                                end = date + "/" + month + "/" + year;
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
                             defaultMode = false;
                             return Status.SUCCESS;
                     }
@@ -273,13 +313,20 @@ public class VoiceInterface {
                     intent.putExtra(ActivityDetector.ENTITY_PAYMENT, payment);
                     intent.putExtra(ActivityDetector.ENTITY_DATE, date);
                     appContext.startActivity(intent);
-                    if (!(amount == 0 && payment.isEmpty() && payee.isEmpty() &&
-                            date.isEmpty())) {
+                    if (amount == 0 || payee.isEmpty()) {
                         slangIntent
                                 .getCompletionStatement()
                                 .overrideAffirmative(
                                         getCompletionPrompt(ActivityDetector.TRANSFER_MODE)
                                 );
+                    } else {
+                        if(payment.equals("NEFT") && date.isEmpty()) {
+                            slangIntent
+                                    .getCompletionStatement()
+                                    .overrideAffirmative(
+                                            getCompletionPrompt(ActivityDetector.TRANSFER_MODE)
+                                    );
+                        }
                     }
                     return Status.SUCCESS;
                 case ActivityDetector.INTENT_VIEW_ACCOUNT_STATEMENT:
