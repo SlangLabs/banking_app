@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".Statement">
+    tools:context="in.slanglabs.bankingapp.Statement">
 
     <LinearLayout
         android:layout_width="wrap_content"
