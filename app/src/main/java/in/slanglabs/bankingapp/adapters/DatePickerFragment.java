@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 import in.slanglabs.bankingapp.AccountStatement;
 import in.slanglabs.bankingapp.MoneyTransfer;
-import com.example.akanshisrivastava.bankingapp.R;
+import in.slanglabs.bankingapp.R;
 import in.slanglabs.bankingapp.Statement;
 
 import java.util.Calendar;

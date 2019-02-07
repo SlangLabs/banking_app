@@ -19,7 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.akanshisrivastava.bankingapp.R;
+import in.slanglabs.bankingapp.R;
 
 import in.slanglabs.bankingapp.adapters.DatePickerFragment;
 import in.slanglabs.bankingapp.adapters.NothingSelectedSpinnerAdapter;

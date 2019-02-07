@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.akanshisrivastava.bankingapp.R;
+import in.slanglabs.bankingapp.R;
 import in.slanglabs.bankingapp.network.RecentTransactionsPojo;
 
 import java.util.List;

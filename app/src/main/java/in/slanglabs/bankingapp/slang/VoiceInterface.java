@@ -12,7 +12,7 @@ import in.slanglabs.bankingapp.Bills;
 import in.slanglabs.bankingapp.CustomerCare;
 import in.slanglabs.bankingapp.MoneyTransfer;
 import in.slanglabs.bankingapp.OrderCheque;
-import com.example.akanshisrivastava.bankingapp.R;
+import in.slanglabs.bankingapp.R;
 import in.slanglabs.bankingapp.RecentTransactions;
 import in.slanglabs.bankingapp.Statement;
 
@@ -21,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import in.slanglabs.platform.SlangBuddy;
 import in.slanglabs.platform.SlangBuddyOptions;
@@ -40,20 +42,24 @@ public class VoiceInterface {
     private static int amount;
     private static String date, payee, payment, month, start, end, mode, vendor;
 
+    private static final String API_KEY_PROD = "c80525dd5fa146d6a3a1aba91fc5d6b9";
+    private static final String API_KEY_DEV = "d38d14ebfe0446b786994109f6cbef43";
+    private static final String BUDDY_ID_PROD = "5671e72eefe54307b5e32fcafdcf02ac";
+    private static final String BUDDY_ID_DEV = "9daf450b6eea48149565f7a7d7b63c47";
+
     public static void init(final Application context) {
         appContext = context;
-        String apiKey = "c80525dd5fa146d6a3a1aba91fc5d6b9";
-        String buddyId = "5671e72eefe54307b5e32fcafdcf02ac";
 
         SlangBuddyOptions options = null;
         try {
             options = new SlangBuddyOptions.Builder()
                     .setContext(context)
-                    .setBuddyId(buddyId)
-                    .setAPIKey(apiKey)
+                    .setBuddyId(getBuddyId())
+                    .setAPIKey(getApiKey())
                     .setListener(new BuddyListener())
                     .setIntentAction(new V1Action(appContext))
                     .setRequestedLocales(SlangLocale.getSupportedLocales())
+                    .setConfigOverrides(getConfigOverrides())
                     .setDefaultLocale(SlangLocale.LOCALE_ENGLISH_IN)
                     .setEnvironment(SlangBuddy.Environment.STAGING)
                     .build();
@@ -63,6 +69,25 @@ public class VoiceInterface {
             e.printStackTrace();
         }
         SlangBuddy.initialize(options);
+    }
+
+    private static Map<String, Object> getConfigOverrides() {
+        HashMap<String, Object> config = new HashMap<>();
+        if (shouldForceDev()) {
+            config.put("internal.common.io.server_host", "infer-dev.slanglabs.in");
+            config.put("internal.common.io.analytics_server_host", "analytics-dev.slanglabs.in");
+        }
+        return config;
+    }
+
+    private static String getApiKey() {
+        return shouldForceDev()
+                ? API_KEY_DEV : API_KEY_PROD;
+    }
+
+    private static String getBuddyId(){
+        return shouldForceDev()
+                ? BUDDY_ID_DEV : BUDDY_ID_PROD;
     }
 
     private static boolean shouldForceDev() {
@@ -92,18 +117,6 @@ public class VoiceInterface {
 
         @Override
         public Status onEntityUnresolved(SlangEntity entity, SlangSession context) {
-            /*Log.d(TAG, "Entity name unresolved " + entity.getName());
-            if(entity.getIntent().getName().equals(ActivityDetector.INTENT_FUND_TRANSFER)) {
-                if(entity.getName().equals(ActivityDetector.ENTITY_PAYMENT)) {
-                    if(!date.isEmpty()) {
-                        Log.d(TAG, "Resolving");
-                        entity.resolve("NEFT");
-                        payment = "NEFT";
-                        return Status.SUCCESS;
-                    }
-                }
-            }
-            return Status.SUCCESS;*/
             return Status.SUCCESS;
         }
 
@@ -147,6 +160,7 @@ public class VoiceInterface {
                             return Status.SUCCESS;
                         case ActivityDetector.ENTITY_PAYEE:
                             payee = entity.getValue();
+                            Log.d(TAG, "Payee name is " + entity.getValue());
                             return Status.SUCCESS;
                         case ActivityDetector.ENTITY_PAYMENT:
                             payment = entity.getValue().toUpperCase();
@@ -295,11 +309,22 @@ public class VoiceInterface {
                                     break;
                             }
                         }
-                        slangIntent
-                                .getCompletionStatement()
-                                .overrideAffirmative(
-                                        getCompletionPrompt(ActivityDetector.PAYMENT_MODE)
-                                );
+                        switch (context.getCurrentLocale().getLanguage()) {
+                            case "en":
+                                slangIntent
+                                        .getCompletionStatement()
+                                        .overrideAffirmative(
+                                                getCompletionPromptEnglish(ActivityDetector.PAYMENT_MODE)
+                                        );
+                                break;
+                            case "hi":
+                                slangIntent
+                                        .getCompletionStatement()
+                                        .overrideAffirmative(
+                                                getCompletionPromptHindi(ActivityDetector.PAYMENT_MODE)
+                                        );
+                                break;
+                        }
                         appContext.startActivity(intent);
                     }
                     return Status.SUCCESS;
@@ -312,18 +337,40 @@ public class VoiceInterface {
                     intent.putExtra(ActivityDetector.ENTITY_DATE, date);
                     appContext.startActivity(intent);
                     if (amount == 0 || payee.isEmpty()) {
-                        slangIntent
-                                .getCompletionStatement()
-                                .overrideAffirmative(
-                                        getCompletionPrompt(ActivityDetector.TRANSFER_MODE)
-                                );
+                        switch (context.getCurrentLocale().getLanguage()) {
+                            case "en":
+                                slangIntent
+                                        .getCompletionStatement()
+                                        .overrideAffirmative(
+                                                getCompletionPromptEnglish(ActivityDetector.TRANSFER_MODE)
+                                        );
+                                break;
+                            case "hi":
+                                slangIntent
+                                        .getCompletionStatement()
+                                        .overrideAffirmative(
+                                                getCompletionPromptHindi(ActivityDetector.TRANSFER_MODE)
+                                        );
+                                break;
+                        }
                     } else {
                         if(payment.equals("NEFT") && date.isEmpty()) {
-                            slangIntent
-                                    .getCompletionStatement()
-                                    .overrideAffirmative(
-                                            getCompletionPrompt(ActivityDetector.TRANSFER_MODE)
-                                    );
+                            switch (context.getCurrentLocale().getLanguage()) {
+                                case "en":
+                                    slangIntent
+                                            .getCompletionStatement()
+                                            .overrideAffirmative(
+                                                    getCompletionPromptEnglish(ActivityDetector.TRANSFER_MODE)
+                                            );
+                                    break;
+                                case "hi":
+                                    slangIntent
+                                            .getCompletionStatement()
+                                            .overrideAffirmative(
+                                                    getCompletionPromptHindi(ActivityDetector.TRANSFER_MODE)
+                                            );
+                                    break;
+                            }
                         }
                     }
                     return Status.SUCCESS;
@@ -336,13 +383,22 @@ public class VoiceInterface {
                                 ActivityDetector.VIEW_STATEMENT_DEFAULT
                         );
                         appContext.startActivity(intent);
-                        slangIntent
-                                .getCompletionStatement()
-                                .overrideAffirmative(
-                                        getCompletionPrompt(
-                                                ActivityDetector.VIEW_STATEMENT_MODE
-                                        )
-                                );
+                        switch (context.getCurrentLocale().getLanguage()) {
+                            case "en":
+                                slangIntent
+                                        .getCompletionStatement()
+                                        .overrideAffirmative(
+                                                getCompletionPromptEnglish(ActivityDetector.VIEW_STATEMENT_MODE)
+                                        );
+                                break;
+                            case "hi":
+                                slangIntent
+                                        .getCompletionStatement()
+                                        .overrideAffirmative(
+                                                getCompletionPromptHindi(ActivityDetector.VIEW_STATEMENT_MODE)
+                                        );
+                                break;
+                        }
                         return Status.SUCCESS;
                     }
                     else {
@@ -369,12 +425,22 @@ public class VoiceInterface {
         }
     }
 
-    private static String getCompletionPrompt(String mode) {
+    private static String getCompletionPromptEnglish(String mode) {
         switch (mode){
             case ActivityDetector.PAYMENT_MODE:
             case ActivityDetector.VIEW_STATEMENT_MODE:
             case ActivityDetector.TRANSFER_MODE:
                 return "Please enter all details to proceed.";
+        }
+        return null;
+    }
+
+    private static String getCompletionPromptHindi(String mode) {
+        switch (mode) {
+            case ActivityDetector.PAYMENT_MODE:
+            case ActivityDetector.VIEW_STATEMENT_MODE:
+            case ActivityDetector.TRANSFER_MODE:
+                return "कृपया सभी जानकारी भरें.";
         }
         return null;
     }

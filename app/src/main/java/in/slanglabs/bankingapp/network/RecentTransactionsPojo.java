@@ -3,7 +3,7 @@ package in.slanglabs.bankingapp.network;
 import android.content.res.Resources;
 import android.util.Log;
 
-import com.example.akanshisrivastava.bankingapp.R;
+import in.slanglabs.bankingapp.R;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

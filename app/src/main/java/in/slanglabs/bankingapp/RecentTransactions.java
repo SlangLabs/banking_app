@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.example.akanshisrivastava.bankingapp.R;
+import in.slanglabs.bankingapp.R;
 
 import in.slanglabs.bankingapp.adapters.RecentTransactionsAdapter;
 import in.slanglabs.bankingapp.network.RecentTransactionsPojo;
