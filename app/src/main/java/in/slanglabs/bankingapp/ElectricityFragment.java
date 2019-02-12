@@ -172,7 +172,10 @@ public class ElectricityFragment extends Fragment {
     private void enableSubmitIfReady() {
         boolean spin = elecSpinner != null && elecSpinner.getSelectedItem() != null;
         boolean isReady = spin && cn.getText().toString().length() == 10 &&
-                Integer.valueOf(amount.getText().toString()) > 0;
+                !amount.getText().toString().isEmpty();
+        if (!amount.getText().toString().isEmpty()) {
+            isReady = isReady && (Integer.parseInt(amount.getText().toString()) > 0);
+        }
         proceed.setEnabled(isReady);
     }
 

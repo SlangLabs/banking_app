@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import in.slanglabs.platform.SlangBuddy;
@@ -452,5 +453,15 @@ public class VoiceInterface {
 
         @Override
         public void onInitializationFailed(SlangBuddy.InitializationError e) {}
+
+        @Override
+        public void onLocaleChanged(Locale locale) {
+
+        }
+
+        @Override
+        public void onLocaleChangeFailed(Locale locale, SlangBuddy.LocaleChangeError localeChangeError) {
+
+        }
     }
 }
