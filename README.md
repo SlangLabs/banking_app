@@ -2,17 +2,21 @@
 Sample banking app with Slang Integration.
 All the features mentioned below can be accessed by navigating through the app's UI as well
 
+<img src="./images/splash.png" width="200px"> 
+
+<img src="./images/home.png" width="200px">
+
 This app has the following features
 * Show current account balance
   - Can be triggered by the user saying things like "Show my account balance"
   
 * Show recent transactions
   - Can be triggered by the user saying "Show my recent transactions"
-  
+<img src="./images/recent_trans.png" width="200px">
 * Transfer funds
   - Can be triggered by the user saying "Send money". The user can also specify the amount, payee and the date (if needed) 
   by saying "Send money to Kumar" or "Send 5000 rupees to Ved" or "Send 1000 rupees to Kumar on 12th June"
-
+  <img src="./images/home_utterance.png" width="200px"> <img src="./images/funds.png" width="200px">
 * Order a new cheque book
   - Can be triggered by the user saying "Order a new cheque book"
 
