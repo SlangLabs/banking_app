@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="#515151"
     android:layout_height="match_parent"
     tools:context="in.slanglabs.bankingapp.Bills">
 
@@ -25,7 +26,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:enabled="false"
+                android:background="@drawable/grid5"
                 android:drawableTop="@drawable/baseline_payment_24"
+                android:paddingTop="8dp"
                 android:text="@string/credit_cards" />
         </LinearLayout>
         <LinearLayout
@@ -36,7 +39,10 @@
                 android:id="@+id/bill_electricity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableTop="@drawable/baseline_highlight_24"
+                android:background="@drawable/grid5"
+                android:textColor="@color/white"
+                android:drawableTop="@drawable/baseline_highlight_white_24"
+                android:paddingTop="8dp"
                 android:text="@string/electricity" />
         </LinearLayout>
         <LinearLayout
@@ -47,7 +53,10 @@
                 android:id="@+id/bill_postpaid"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableTop="@drawable/baseline_phone_android_24"
+                android:background="@drawable/grid5"
+                android:textColor="@color/white"
+                android:drawableTop="@drawable/baseline_phone_android_white_24"
+                android:paddingTop="8dp"
                 android:text="@string/postpaid" />
         </LinearLayout>
     </LinearLayout>
@@ -68,7 +77,10 @@
                 android:id="@+id/bill_landline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableTop="@drawable/baseline_wifi_24"
+                android:background="@drawable/grid5"
+                android:textColor="@color/white"
+                android:drawableTop="@drawable/baseline_wifi_white_24"
+                android:paddingTop="8dp"
                 android:text="@string/broadband" />
         </LinearLayout>
         <LinearLayout
@@ -79,7 +91,10 @@
                 android:id="@+id/bill_water"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableTop="@drawable/baseline_local_drink_24"
+                android:background="@drawable/grid5"
+                android:textColor="@color/white"
+                android:drawableTop="@drawable/baseline_local_drink_white_24"
+                android:paddingTop="8dp"
                 android:text="@string/water" />
         </LinearLayout>
         <LinearLayout
@@ -91,7 +106,9 @@
                 android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/grid5"
                 android:drawableTop="@drawable/baseline_business_center_24"
+                android:paddingTop="8dp"
                 android:text="@string/tax" />
         </LinearLayout>
     </LinearLayout>
@@ -101,5 +118,6 @@
         android:layout_marginTop="24dp"
         android:layout_gravity="center"
         android:enabled="false"
+        android:background="@drawable/grid5"
         android:text="@string/add_biller"/>
 </LinearLayout>

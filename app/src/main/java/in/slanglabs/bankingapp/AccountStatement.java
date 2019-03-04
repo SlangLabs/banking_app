@@ -17,8 +17,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import in.slanglabs.bankingapp.R;
-
 import in.slanglabs.bankingapp.adapters.DatePickerFragment;
 import in.slanglabs.bankingapp.adapters.RecentTransactionsAdapter;
 import in.slanglabs.bankingapp.network.RecentTransactionsPojo;

@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#515151"
     tools:context="in.slanglabs.bankingapp.OrderCheque">
     <TextView
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_width="wrap_content"
         android:text="@string/account_number_text"
+        android:textColor="@color/light_font"
         android:layout_height="wrap_content" />
     <TextView
         android:layout_marginTop="4dp"
@@ -18,13 +20,15 @@
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/account_number"/>
+        android:text="@string/account_number"
+        android:textColor="@color/white"/>
     <TextView
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/registered_address"/>
+        android:text="@string/registered_address"
+        android:textColor="@color/light_font"/>
     <EditText
         android:layout_marginTop="4dp"
         android:layout_marginLeft="16dp"
@@ -33,6 +37,8 @@
         android:text="@string/reg_address"
         android:enabled="false"
         android:layout_width="match_parent"
+        android:textColor="@color/white60"
+        android:backgroundTint="@color/warm_grey"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/submit_button_cheque"
@@ -40,5 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
+        android:background="@drawable/grid5"
+        android:textColor="@color/white"
         android:layout_gravity="center"/>
 </LinearLayout>

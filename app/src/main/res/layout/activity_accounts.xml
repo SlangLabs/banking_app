@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
+    android:background="#515151"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -16,6 +17,7 @@
             android:layout_height="wrap_content"
             android:text="@string/account_number_text"
             android:layout_gravity="center"
+            android:textColor="@color/light_font"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
@@ -23,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="@color/white"
             android:text="@string/account_number"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
@@ -38,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total_available_balance"
-            android:textColor="#848484" />
+            android:textColor="@color/light_font" />
     </LinearLayout>
 
     <LinearLayout
@@ -51,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/inr"
-            android:textColor="#848484"
+            android:textColor="@color/light_font"
             android:layout_marginRight="8dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -61,7 +64,7 @@
             android:layout_height="wrap_content"
             android:text="@string/bank_balance"
             android:textStyle="bold"
-            android:textColor="#0B2161"
+            android:textColor="@color/white"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </LinearLayout>
@@ -76,8 +79,9 @@
             android:id="@+id/recent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/recent_transaction"
-            android:background="@drawable/grid6"/>
+            android:text="@string/recent_transactions"
+            android:textColor="@color/white"
+            android:background="@drawable/grid5"/>
 
     </LinearLayout>
     <LinearLayout
@@ -91,7 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/view_account_statement"
-            android:background="@drawable/grid6"/>
+            android:textColor="@color/white"
+            android:background="@drawable/grid5"/>
 
     </LinearLayout>
     <LinearLayout
@@ -105,10 +110,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/other_services"
-            android:background="@drawable/grid6"/>
+            android:textColor="@color/white"
+            android:background="@drawable/grid5"/>
 
     </LinearLayout>
-
-
 
 </LinearLayout>

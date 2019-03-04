@@ -7,12 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import in.slanglabs.bankingapp.R;
 import in.slanglabs.platform.SlangBuddy;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button account,transfer,care,deposit;
+    Button account, transfer, care, bills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         account = findViewById(R.id.account);
         transfer = findViewById(R.id.mtransfer);
         care = findViewById(R.id.care);
-        deposit = findViewById(R.id.deposit);
+        bills = findViewById(R.id.bills);
 
         account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        deposit.setOnClickListener(new View.OnClickListener() {
+        bills.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Bills.class);
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             SlangBuddy.getBuiltinUI().show();
         } catch (Exception e) {
-            Log.d("SplashScreen", "SlangBuddy not yet initialized");
+            Log.d("MainActivity", "SlangBuddy not yet initialized");
         }
     }
 }

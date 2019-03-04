@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="24dp"
+    android:padding="24dp"
     android:orientation="vertical"
+    android:background="#515151"
     tools:context="in.slanglabs.bankingapp.CustomerCare">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:paddingTop="10dp"
         android:text="@string/to_text"
+        android:textColor="@color/white60"
         android:textSize="16sp" />
 
     <android.support.v7.widget.CardView
@@ -40,5 +40,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="36dp"
         android:singleLine="true"
+        android:background="@drawable/grid5"
+        android:textColor="@color/white"
         android:text="@string/send" />
 </LinearLayout>

@@ -35,7 +35,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
-            android:text="@string/title1"
+            android:text="@string/digital_solution"
+            android:textColor="#FFF"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:textSize="16sp"
+            android:text="@string/demo"
             android:textColor="#FFF"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
@@ -47,7 +57,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"

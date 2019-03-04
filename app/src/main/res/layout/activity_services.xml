@@ -5,23 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#515151"
     tools:context="in.slanglabs.bankingapp.Services">
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FACC2E"
-        android:text="Services"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
-        android:typeface="serif" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:padding="15dp">
 
@@ -30,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/grid6"
+            android:textColor="@color/white"
+            android:background="@drawable/grid5"
             android:text="Request Statement"
             android:textSize="16sp" />
 
@@ -39,7 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/grid6"
+            android:textColor="@color/white"
+            android:background="@drawable/grid5"
             android:text="@string/apply_for_cheque_book"
             android:textSize="16sp" />
 
@@ -49,7 +41,8 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/grid6"
+            android:textColor="@color/warm_grey"
+            android:background="@drawable/grid5"
             android:text="@string/status_of_requests"
             android:textSize="16sp" />
 
@@ -59,7 +52,8 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/grid6"
+            android:textColor="@color/warm_grey"
+            android:background="@drawable/grid5"
             android:text="@string/register_complaint"
             android:textSize="16sp" />
 
@@ -69,7 +63,8 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/grid6"
+            android:textColor="@color/warm_grey"
+            android:background="@drawable/grid5"
             android:text="@string/complaints_management"
             android:textSize="16sp" />
 

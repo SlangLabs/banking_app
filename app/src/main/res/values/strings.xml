@@ -5,8 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title">Iron Bank</string>
-    <string name="title1">Digital Solution</string>
-    <string name="copyright">Iron Bank</string>
+    <string name="digital_solution">Digital Solution</string>
+    <string name="demo">Demo App</string>
+    <string name="copyright">Iron Bank powered by Slang Labs</string>
     <string name="spinner_title">Select Category</string>
     <string name="account_number_text">Account Number</string>
     <string name="recent_date">09 Jan \'19</string>
@@ -36,7 +37,7 @@
     <string name="transfer_to">Transfer to</string>
     <string name="transfer_type">Transfer Type</string>
     <string name="other_services">Other Services</string>
-    <string name="recent_transaction">Recent Transaction</string>
+    <string name="recent_transactions">Recent Transactions</string>
     <string name="amount">Amount</string>
     <string name="remarks">Remarks</string>
     <string name="imps_description">Up to INR 2 lakh trans. Real time. Works 24x7 and on holidays.</string>
@@ -56,7 +57,7 @@
     <string name="biller_select">Select Biller</string>
     <string name="consumer_number">Consumer Number</string>
     <string name="consumer_number_hint">10 digit Consumer number</string>
-    <string name="from_which_account">From which account do you want to pay</string>
+    <string name="from_which_account">Select account for paying</string>
     <string name="pay_bill">Pay Bill</string>
     <string name="select_operator">Select Operator</string>
     <string name="mobile_number">Mobile Number</string>
@@ -88,6 +89,7 @@
     <string name="pay_broad_bill">Pay Broadband Bill</string>
     <string name="default_email">abc@email.com</string>
     <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string name="reg_address">Number 4, Privet Drive, Little Whinging, Surrey.</string>
     <string name="no_matching">Sorry no matching records found. Please choose another date range and try again</string>
 

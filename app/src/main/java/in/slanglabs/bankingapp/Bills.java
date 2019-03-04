@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import in.slanglabs.bankingapp.R;
-
 import in.slanglabs.bankingapp.slang.ActivityDetector;
 
 public class Bills extends AppCompatActivity {

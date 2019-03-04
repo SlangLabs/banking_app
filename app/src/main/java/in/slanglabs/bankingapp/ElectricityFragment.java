@@ -1,10 +1,12 @@
 package in.slanglabs.bankingapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -17,20 +19,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import in.slanglabs.bankingapp.R;
-
 import in.slanglabs.bankingapp.adapters.NothingSelectedSpinnerAdapter;
 import in.slanglabs.bankingapp.slang.ActivityDetector;
 
 public class ElectricityFragment extends Fragment {
     private Button proceed;
-    private Spinner elecSpinner;
+    private Spinner elecSpinner, accountSpinner;
     private EditText cn, amount;
     private OnFragmentElecInteractionListener mListener;
+    private Context context;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getActivity();
     }
 
     @Nullable
@@ -52,9 +54,34 @@ public class ElectricityFragment extends Fragment {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Your bill payment will be completed.", Toast.LENGTH_LONG).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Please confirm your bill payment");
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        getActivity().onBackPressed();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked cancel button
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
+
+        accountSpinner = view.findViewById(R.id.electricity_account);
+        ArrayAdapter<CharSequence> accountAdapter = ArrayAdapter.createFromResource(
+                context,
+                R.array.account_number,
+                R.layout.spinner_item
+        );
+        accountAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        accountSpinner.setAdapter(accountAdapter);
 
         elecSpinner = view.findViewById(R.id.electricity_spinner);
         elecSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -112,11 +139,11 @@ public class ElectricityFragment extends Fragment {
         if (amountPay > 0)
             amount.setText(String.valueOf(amountPay));
 
-        if(mode.equals(ActivityDetector.PAYMENT_ELEC)) {
+        if(mode != null && mode.equals(ActivityDetector.PAYMENT_ELEC)) {
             elecAdapter = ArrayAdapter.createFromResource(
-                    getContext(),
+                    context,
                     R.array.elec_list,
-                    android.R.layout.simple_spinner_item
+                    R.layout.spinner_item
             );
             if (mListener != null) {
                 mListener.onFragmentInteraction("Electricity Bill");
@@ -125,9 +152,9 @@ public class ElectricityFragment extends Fragment {
         }
         else {
             elecAdapter = ArrayAdapter.createFromResource(
-                    getContext(),
+                    context,
                     R.array.water_list,
-                    android.R.layout.simple_spinner_item
+                    R.layout.spinner_item
             );
             if (mListener != null) {
                 mListener.onFragmentInteraction("Water Bill");
@@ -177,6 +204,12 @@ public class ElectricityFragment extends Fragment {
             isReady = isReady && (Integer.parseInt(amount.getText().toString()) > 0);
         }
         proceed.setEnabled(isReady);
+        if(isReady) {
+            proceed.setTextColor(getResources().getColor(R.color.white));
+        }
+        else {
+            proceed.setTextColor(getResources().getColor(R.color.warm_grey));
+        }
     }
 
     public interface OnFragmentElecInteractionListener {

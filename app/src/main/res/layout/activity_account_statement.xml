@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#515151"
     tools:context="in.slanglabs.bankingapp.AccountStatement">
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/account_number_text"
+                    android:textColor="@color/light_font"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
@@ -33,6 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/account_number"
+                    android:textColor="@color/white"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
             <RelativeLayout
@@ -46,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/total_available_balance"
-                    android:textColor="#848484" />
+                    android:textColor="@color/light_font" />
 
                 <TextView
                     android:id="@+id/vs_inr"
@@ -55,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/inr"
-                    android:textColor="#848484"
+                    android:textColor="@color/light_font"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
@@ -67,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/bank_balance"
                     android:textStyle="bold"
-                    android:textColor="#0B2161"
+                    android:textColor="@color/white"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </RelativeLayout>
         </LinearLayout>
@@ -81,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
                 android:paddingBottom="4dp"
+                android:textColor="@color/light_font"
                 android:text="@string/period_question"/>
             <RadioGroup
                 android:id="@+id/vs_radio_group"
@@ -92,17 +96,22 @@
                     android:id="@+id/vs_last_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:buttonTint="#ec8a00"
                     android:text="@string/last_month"/>
                 <RadioButton
                     android:id="@+id/vs_last_three_months"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="#ec8a00"
                     android:text="@string/last_3_months"/>
             </RadioGroup>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/light_font"
                 android:text="@string/choose_custom_date"
                 android:paddingLeft="8dp"
                 android:paddingBottom="4dp"/>
@@ -118,7 +127,10 @@
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:textSize="14sp"
+                    android:backgroundTint="@color/white"
                     android:hint="@string/start_date"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
                     android:layout_weight="1"/>
                 <EditText
                     android:id="@+id/vs_end"
@@ -128,14 +140,29 @@
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:textSize="14sp"
+                    android:backgroundTint="@color/white"
                     android:hint="@string/end_date"
+                    android:textColorHint="@color/white"
+                    android:textColor="@color/white"
                     android:layout_weight="1"/>
             </LinearLayout>
         </LinearLayout>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/vs_proceed"
+            android:enabled="false"
+            android:layout_marginTop="4dp"
+            android:layout_gravity="center"
+            android:background="@drawable/grid5"
+            android:textColor="@color/white"
+            android:text="@string/proceed"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:id="@+id/vs_linear_layout_transactions">
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/vs_view_transactions_rv"
@@ -148,19 +175,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:visibility="gone"
+            android:textColor="@color/white"
             android:text="@string/no_matching"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/vs_proceed"
-            android:enabled="false"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center"
-            android:text="@string/proceed"/>
 
     </LinearLayout>
 </ScrollView>

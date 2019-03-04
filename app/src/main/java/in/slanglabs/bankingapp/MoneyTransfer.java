@@ -1,7 +1,9 @@
 package in.slanglabs.bankingapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,9 +19,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import in.slanglabs.bankingapp.R;
 
 import in.slanglabs.bankingapp.adapters.DatePickerFragment;
 import in.slanglabs.bankingapp.adapters.NothingSelectedSpinnerAdapter;
@@ -36,7 +35,6 @@ public class MoneyTransfer extends AppCompatActivity {
     private Spinner payeeSpinner;
     private RadioGroup neftRadio;
     private RadioButton payLaterRadioButton;
-    private boolean payLaterVisible;
     private static final String TAG = MoneyTransfer.class.getSimpleName();
 
     @Override
@@ -44,7 +42,6 @@ public class MoneyTransfer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_money_transfer);
         getSupportActionBar().setTitle("Funds Transfer");
-        payLaterVisible = false;
 
         neftDescription = findViewById(R.id.neft_layout);
         description = findViewById(R.id.type_description);
@@ -165,14 +162,30 @@ public class MoneyTransfer extends AppCompatActivity {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MoneyTransfer.this, "Your funds will be transferred", Toast.LENGTH_LONG).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(MoneyTransfer.this);
+                builder.setMessage("Please confirm fund transfer.");
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        finish();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked cancel button
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
         payeeSpinner = findViewById(R.id.payee_spinner);
 
         ArrayAdapter<CharSequence> payeeAdapter =
-                ArrayAdapter.createFromResource(this, R.array.transfer_list, android.R.layout.simple_spinner_item);
+                ArrayAdapter.createFromResource(this, R.array.transfer_list, R.layout.spinner_item);
         payeeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         payeeSpinner.setAdapter(new NothingSelectedSpinnerAdapter(
@@ -233,6 +246,12 @@ public class MoneyTransfer extends AppCompatActivity {
         boolean isReady = neftDate && spin && !amount.getText().toString().isEmpty() &&
                 Integer.valueOf(amount.getText().toString()) > 0;
         proceed.setEnabled(isReady);
+        if(isReady) {
+            proceed.setTextColor(getResources().getColor(R.color.white));
+        }
+        else {
+            proceed.setTextColor(getResources().getColor(R.color.warm_grey));
+        }
     }
 
 }

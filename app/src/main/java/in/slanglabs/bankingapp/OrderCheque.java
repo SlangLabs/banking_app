@@ -28,10 +28,17 @@ public class OrderCheque extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(OrderCheque.this);
-                builder.setMessage("Your cheque book order has been received.");
+                builder.setMessage("Please confirm your cheque book order.");
                 builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked OK button
+                        finish();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked cancel button
                     }
                 });
 
