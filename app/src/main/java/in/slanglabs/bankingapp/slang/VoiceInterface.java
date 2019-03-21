@@ -234,7 +234,6 @@ public class VoiceInterface {
 
         @Override
         public void onIntentResolutionEnd(SlangIntent intent, SlangSession context) {
-            Log.d(TAG, "inside intentResolutionEnd");
         }
 
         @Override
@@ -354,25 +353,29 @@ public class VoiceInterface {
                                         );
                                 break;
                         }
-                    } else {
-                        if(payment.equals("NEFT") && date.isEmpty()) {
-                            switch (context.getCurrentLocale().getLanguage()) {
-                                case "en":
-                                    slangIntent
-                                            .getCompletionStatement()
-                                            .overrideAffirmative(
-                                                    getCompletionPromptEnglish(ActivityDetector.TRANSFER_MODE)
-                                            );
-                                    break;
-                                case "hi":
-                                    slangIntent
-                                            .getCompletionStatement()
-                                            .overrideAffirmative(
-                                                    getCompletionPromptHindi(ActivityDetector.TRANSFER_MODE)
-                                            );
-                                    break;
-                            }
+                    } else if (payment.equals("NEFT") && date.isEmpty()) {
+                        switch (context.getCurrentLocale().getLanguage()) {
+                            case "en":
+                                slangIntent
+                                        .getCompletionStatement()
+                                        .overrideAffirmative(
+                                                getCompletionPromptEnglish(ActivityDetector.TRANSFER_MODE)
+                                        );
+                                break;
+                            case "hi":
+                                slangIntent
+                                        .getCompletionStatement()
+                                        .overrideAffirmative(
+                                                getCompletionPromptHindi(ActivityDetector.TRANSFER_MODE)
+                                        );
+                                break;
                         }
+                    } else {
+                        slangIntent
+                                .getCompletionStatement()
+                                .overrideAffirmative(getFundsCompletetionPrompt(
+                                        context.getCurrentLocale().getLanguage()
+                                ));
                     }
                     return Status.SUCCESS;
                 case ActivityDetector.INTENT_VIEW_ACCOUNT_STATEMENT:
@@ -419,10 +422,31 @@ public class VoiceInterface {
                                 intent.putExtra(ActivityDetector.ENTITY_END, end);
                         }
                         appContext.startActivity(intent);
+                        slangIntent
+                                .getCompletionStatement()
+                                .overrideAffirmative(getAccountCompletetionPrompt(
+                                        context.getCurrentLocale().getLanguage()
+                                ));
                         return Status.SUCCESS;
                     }
             }
             return null;
+        }
+    }
+
+    private static String getAccountCompletetionPrompt(String locale) {
+        if (locale.equals("en")) {
+            return "Here is the statement you requested.";
+        } else {
+            return "यह रहा आपके द्वारा अनुरोधित खाते का स्टेटमेंट.";
+        }
+    }
+
+    private static String getFundsCompletetionPrompt(String locale) {
+        if (locale.equals("en")) {
+            return "Please click on proceed to confirm your fund transfer.";
+        } else {
+            return "कृपया पैसे भेजने के लिए प्रॉसीड बटन दबाए.";
         }
     }
 
