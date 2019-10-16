@@ -230,12 +230,10 @@ public class VoiceInterface {
 
         @Override
         public void onIntentResolutionEnd(SlangIntent intent, SlangSession context) {
-            Log.e(TAG, "Intent Resolved:" + intent.getName());
         }
 
         @Override
         public Status action(SlangIntent slangIntent, SlangSession context) {
-            Log.d(TAG, "inside action");
             switch (slangIntent.getName()) {
                 case ActivityDetector.INTENT_VIEW_ACCOUNT_SUMMARY:
                     Intent intent = new Intent(appContext, Accounts.class);
