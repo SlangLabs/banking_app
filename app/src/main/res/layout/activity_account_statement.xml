@@ -26,7 +26,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/account_number_text"
-                    android:textColor="@color/light_font"
+                    android:textColor="@color/slang_lib_light_font"
                     android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <TextView
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/account_number"
-                    android:textColor="@color/white"
+                    android:textColor="@color/slang_lib_white"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
             <RelativeLayout
@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/total_available_balance"
-                    android:textColor="@color/light_font" />
+                    android:textColor="@color/slang_lib_light_font" />
 
                 <TextView
                     android:id="@+id/vs_inr"
@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/inr"
-                    android:textColor="@color/light_font"
+                    android:textColor="@color/slang_lib_light_font"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/bank_balance"
                     android:textStyle="bold"
-                    android:textColor="@color/white"
+                    android:textColor="@color/slang_lib_white"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </RelativeLayout>
         </LinearLayout>
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
                 android:paddingBottom="4dp"
-                android:textColor="@color/light_font"
+                android:textColor="@color/slang_lib_light_font"
                 android:text="@string/period_question"/>
             <RadioGroup
                 android:id="@+id/vs_radio_group"
@@ -96,7 +96,7 @@
                     android:id="@+id/vs_last_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/slang_lib_white"
                     android:buttonTint="#ec8a00"
                     android:text="@string/last_month"/>
                 <RadioButton
@@ -104,14 +104,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/slang_lib_white"
                     android:buttonTint="#ec8a00"
                     android:text="@string/last_3_months"/>
             </RadioGroup>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/light_font"
+                android:textColor="@color/slang_lib_light_font"
                 android:text="@string/choose_custom_date"
                 android:paddingLeft="8dp"
                 android:paddingBottom="4dp"/>
@@ -127,10 +127,10 @@
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:textSize="14sp"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/slang_lib_white"
                     android:hint="@string/start_date"
-                    android:textColorHint="@color/white"
-                    android:textColor="@color/white"
+                    android:textColorHint="@color/slang_lib_white"
+                    android:textColor="@color/slang_lib_white"
                     android:layout_weight="1"/>
                 <EditText
                     android:id="@+id/vs_end"
@@ -140,10 +140,10 @@
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:textSize="14sp"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/slang_lib_white"
                     android:hint="@string/end_date"
-                    android:textColorHint="@color/white"
-                    android:textColor="@color/white"
+                    android:textColorHint="@color/slang_lib_white"
+                    android:textColor="@color/slang_lib_white"
                     android:layout_weight="1"/>
             </LinearLayout>
         </LinearLayout>
@@ -156,7 +156,7 @@
             android:layout_marginTop="4dp"
             android:layout_gravity="center"
             android:background="@drawable/grid5"
-            android:textColor="@color/white"
+            android:textColor="@color/slang_lib_white"
             android:text="@string/proceed"/>
 
         <LinearLayout
@@ -179,7 +179,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:visibility="gone"
-            android:textColor="@color/white"
+            android:textColor="@color/slang_lib_white"
             android:text="@string/no_matching"/>
 
     </LinearLayout>

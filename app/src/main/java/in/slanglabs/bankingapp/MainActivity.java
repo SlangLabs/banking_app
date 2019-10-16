@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         try {
-            SlangBuddy.getBuiltinUI().show();
+            SlangBuddy.getBuiltinUI().show(this);
         } catch (Exception e) {
             Log.d("MainActivity", "SlangBuddy not yet initialized");
         }

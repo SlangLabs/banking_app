@@ -12,14 +12,6 @@ public class SlangMockApplication extends Application {
     private static Context appContext;
     private static final String TAG = SlangMockApplication.class.getSimpleName();
 
-    public static SlangMockApplication getInstance() {
-        return instance;
-    }
-
-    public static Context getAppContext() {
-        return appContext;
-    }
-
     public void setAppContext(Context mAppContext) {
         this.appContext = mAppContext;
     }

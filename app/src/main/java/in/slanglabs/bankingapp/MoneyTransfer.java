@@ -247,10 +247,10 @@ public class MoneyTransfer extends AppCompatActivity {
                 Integer.valueOf(amount.getText().toString()) > 0;
         proceed.setEnabled(isReady);
         if(isReady) {
-            proceed.setTextColor(getResources().getColor(R.color.white));
+            proceed.setTextColor(getResources().getColor(R.color.slang_lib_white));
         }
         else {
-            proceed.setTextColor(getResources().getColor(R.color.warm_grey));
+            proceed.setTextColor(getResources().getColor(R.color.slang_lib_warm_grey));
         }
     }
 

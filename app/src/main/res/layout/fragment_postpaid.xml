@@ -13,16 +13,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/mobile_number"
-        android:textColor="@color/light_font"
+        android:textColor="@color/slang_lib_light_font"
         android:textSize="15sp"/>
     <EditText
         android:id="@+id/postpaid_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:backgroundTint="@color/white"
-        android:textColorHint="@color/light_font"
-        android:textColor="@color/white"
+        android:backgroundTint="@color/slang_lib_white"
+        android:textColorHint="@color/slang_lib_light_font"
+        android:textColor="@color/slang_lib_white"
         android:hint="@string/mobile_number_hint"/>
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/select_operator"
-        android:textColor="@color/light_font"
+        android:textColor="@color/slang_lib_light_font"
         android:textSize="15sp"/>
     <Spinner
         android:id="@+id/postpaid_spinner"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:prompt="@string/biller_select"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/slang_lib_white"
         android:spinnerMode="dialog"/>
 
     <TextView
@@ -46,17 +46,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/amount"
-        android:textColor="@color/light_font"
+        android:textColor="@color/slang_lib_light_font"
         android:textSize="16sp"/>
 
     <EditText
         android:id="@+id/postpaid_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/slang_lib_white"
         android:textSize="28sp"
-        android:textColorHint="@color/light_font"
-        android:textColor="@color/white"
+        android:textColorHint="@color/slang_lib_light_font"
+        android:textColor="@color/slang_lib_white"
         android:inputType="numberDecimal"
         android:hint="@string/_0_0" />
 
@@ -65,14 +65,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/from_which_account"
-        android:textColor="@color/light_font"
+        android:textColor="@color/slang_lib_light_font"
         android:textSize="15sp"/>
     <Spinner
         android:id="@+id/postpaid_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/slang_lib_white"
         android:entries="@array/account_number"
         android:spinnerMode="dropdown"/>
 
@@ -84,8 +84,7 @@
         android:layout_gravity="center"
         android:background="@drawable/grid5"
         android:padding="4dp"
-        android:textColor="@color/warm_grey"
+        android:textColor="@color/slang_lib_warm_grey"
         android:enabled="false"
         android:text="@string/pay_bill"/>
-
 </LinearLayout>

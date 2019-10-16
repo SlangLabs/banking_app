@@ -18,35 +18,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/white60"
+            android:textColor="@color/slang_lib_white60"
             android:text="@string/from" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/white60"
+            android:textColor="@color/slang_lib_white60"
             android:text="@string/frequency" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:textColor="@color/white60"
+            android:textColor="@color/slang_lib_white60"
             android:text="@string/statement_date" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/white60"
+            android:textColor="@color/slang_lib_white60"
             android:text="@string/dispatch_mode" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@color/white60"
+            android:textColor="@color/slang_lib_white60"
             android:text="@string/email" />
     </LinearLayout>
 
@@ -62,14 +62,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:entries="@array/account_number"
-            android:backgroundTint="@color/white" />
+            android:backgroundTint="@color/slang_lib_white" />
 
         <Spinner
             android:id="@+id/request_frequency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/slang_lib_white"
             android:dropDownSelector="@color/colorPrimaryDark" />
 
         <EditText
@@ -78,9 +78,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="@string/select_date"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/light_font"
-            android:textColor="@color/white"
+            android:backgroundTint="@color/slang_lib_white"
+            android:textColorHint="@color/slang_lib_light_font"
+            android:textColor="@color/slang_lib_white"
             android:textSize="14sp" />
 
         <Spinner
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/slang_lib_white"
             android:dropDownSelector="@color/colorPrimaryDark" />
 
         <EditText
@@ -97,9 +97,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:hint="@string/enter_email_id"
-            android:backgroundTint="@color/white"
-            android:textColorHint="@color/light_font"
-            android:textColor="@color/white"
+            android:backgroundTint="@color/slang_lib_white"
+            android:textColorHint="@color/slang_lib_light_font"
+            android:textColor="@color/slang_lib_white"
             android:textSize="14sp" />
 
         <Button
@@ -110,7 +110,7 @@
             android:padding="10dp"
             android:enabled="false"
             android:background="@drawable/grid5"
-            android:textColor="@color/warm_grey"
+            android:textColor="@color/slang_lib_warm_grey"
             android:text="@string/register_request" />
 
 

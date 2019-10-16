@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/to_text"
-        android:textColor="@color/white60"
+        android:textColor="@color/slang_lib_white60"
         android:textSize="16sp" />
 
     <android.support.v7.widget.CardView
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/slang_lib_white"
             android:hint="@string/hint_feedback"
             android:textSize="16sp" />
 
@@ -41,6 +41,6 @@
         android:layout_marginTop="36dp"
         android:singleLine="true"
         android:background="@drawable/grid5"
-        android:textColor="@color/white"
+        android:textColor="@color/slang_lib_white"
         android:text="@string/send" />
 </LinearLayout>

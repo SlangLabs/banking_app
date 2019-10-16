@@ -18,14 +18,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/transfer_to"
-                android:textColor="@color/light_font"
+                android:textColor="@color/slang_lib_light_font"
                 android:textSize="16sp"/>
             <Spinner
                 android:id="@+id/payee_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/transfer_list"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/slang_lib_white"
                 android:layout_marginTop="4dp"
                 android:prompt="@string/payee_prompt"
                 android:spinnerMode="dialog"/>
@@ -35,17 +35,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/amount"
-                android:textColor="@color/light_font"
+                android:textColor="@color/slang_lib_light_font"
                 android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/transfer_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/slang_lib_white"
                 android:textSize="28sp"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
+                android:textColorHint="@color/slang_lib_white"
+                android:textColor="@color/slang_lib_white"
                 android:inputType="numberDecimal"
                 android:hint="@string/_0_0" />
 
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/light_font"
+                android:textColor="@color/slang_lib_light_font"
                 android:text="@string/transfer_type"
                 android:textSize="16sp"/>
 
@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/grid5"
-                    android:textColor="@color/white"
+                    android:textColor="@color/slang_lib_white"
                     android:focusableInTouchMode="true"
                     android:text="@string/imps"/>
                 <Button
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/grid5"
                     android:focusableInTouchMode="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/slang_lib_white"
                     android:layout_weight="1"
                     android:text="@string/neft"/>
             </LinearLayout>
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textSize="12sp"
-                android:textColor="@color/light_font"
+                android:textColor="@color/slang_lib_light_font"
                 android:text="@string/imps_description"/>
 
             <LinearLayout
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/transfer"
-                    android:textColor="@color/light_font"
+                    android:textColor="@color/slang_lib_light_font"
                     android:textSize="16sp"/>
                 <RadioGroup
                     android:id="@+id/neft_rg"
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:checked="true"
                         android:buttonTint="#ec8a00"
-                        android:textColor="@color/white"
+                        android:textColor="@color/slang_lib_white"
                         android:text="@string/now"/>
                     <RadioButton
                         android:id="@+id/pay_later"
@@ -121,17 +121,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="64dp"
                         android:buttonTint="#ec8a00"
-                        android:textColor="@color/white"
+                        android:textColor="@color/slang_lib_white"
                         android:text="@string/later"/>
                 </RadioGroup>
                 <EditText
                     android:id="@+id/pay_later_date"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="@color/slang_lib_white"
                     android:focusableInTouchMode="false"
-                    android:textColorHint="@color/light_font"
-                    android:textColor="@color/white"
+                    android:textColorHint="@color/slang_lib_light_font"
+                    android:textColor="@color/slang_lib_white"
                     android:inputType="date"
                     android:visibility="gone"
                     android:hint="@string/select_date"/>
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/from"
-                android:textColor="@color/light_font"
+                android:textColor="@color/slang_lib_light_font"
                 android:textSize="16sp"/>
 
             <RelativeLayout
@@ -155,14 +155,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/account_number_text"
                     android:textSize="15sp"
-                    android:textColor="@color/light_font"/>
+                    android:textColor="@color/slang_lib_light_font"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_below="@+id/account_num"
                     android:textSize="15sp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/slang_lib_white"
                     android:text="@string/account_number"/>
                 <TextView
                     android:id="@+id/avail_balance"
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:textSize="15sp"
-                    android:textColor="@color/light_font"
+                    android:textColor="@color/slang_lib_light_font"
                     android:text="@string/available_balance"/>
                 <TextView
                     android:id="@+id/amount_text"
@@ -198,7 +198,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/grid5"
-                android:textColor="@color/warm_grey"
+                android:textColor="@color/slang_lib_warm_grey"
                 android:text="@string/proceed"
                 android:layout_marginTop="24dp"/>
         </LinearLayout>

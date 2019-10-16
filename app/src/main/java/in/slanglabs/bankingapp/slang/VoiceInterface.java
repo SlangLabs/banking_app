@@ -36,7 +36,6 @@ import in.slanglabs.platform.action.SlangMultiStepIntentAction;
 public class VoiceInterface {
     private static final String TAG = VoiceInterface.class.getSimpleName();
 
-    private VoiceInterface sInstance = new VoiceInterface();
     private static Context appContext;
 
     private static boolean defaultMode;
@@ -44,9 +43,9 @@ public class VoiceInterface {
     private static String date, payee, payment, month, start, end, mode, vendor;
 
     private static final String API_KEY_PROD = "c80525dd5fa146d6a3a1aba91fc5d6b9";
-    private static final String API_KEY_DEV = "d38d14ebfe0446b786994109f6cbef43";
+    private static final String API_KEY_STAGE = "98ed448c0e0f4ae087080932c6ab10c8";
     private static final String BUDDY_ID_PROD = "5671e72eefe54307b5e32fcafdcf02ac";
-    private static final String BUDDY_ID_DEV = "9daf450b6eea48149565f7a7d7b63c47";
+    private static final String BUDDY_ID_STAGE = "5e8d75a10d714c1aa22c8921a7aa47a1";
 
     public static void init(final Application context) {
         appContext = context;
@@ -54,11 +53,11 @@ public class VoiceInterface {
         SlangBuddyOptions options = null;
         try {
             options = new SlangBuddyOptions.Builder()
-                    .setContext(context)
+                    .setApplication(context)
                     .setBuddyId(getBuddyId())
                     .setAPIKey(getApiKey())
                     .setListener(new BuddyListener())
-                    .setIntentAction(new V1Action(appContext))
+                    .setIntentAction(new V1Action())
                     .setRequestedLocales(SlangLocale.getSupportedLocales())
                     .setConfigOverrides(getConfigOverrides())
                     .setDefaultLocale(SlangLocale.LOCALE_ENGLISH_IN)
@@ -74,33 +73,30 @@ public class VoiceInterface {
 
     private static Map<String, Object> getConfigOverrides() {
         HashMap<String, Object> config = new HashMap<>();
-        if (shouldForceDev()) {
-            config.put("internal.common.io.server_host", "infer-dev.slanglabs.in");
-            config.put("internal.common.io.analytics_server_host", "analytics-dev.slanglabs.in");
+        if (shouldForceStage()) {
+            config.put("internal.common.io.server_host", "infer-stage.slanglabs.in");
+            config.put("internal.common.io.analytics_server_host", "analytics-stage.slanglabs.in");
         }
         return config;
     }
 
     private static String getApiKey() {
-        return shouldForceDev()
-                ? API_KEY_DEV : API_KEY_PROD;
+        return shouldForceStage()
+                ? API_KEY_STAGE : API_KEY_PROD;
     }
 
     private static String getBuddyId(){
-        return shouldForceDev()
-                ? BUDDY_ID_DEV : BUDDY_ID_PROD;
+        return shouldForceStage()
+                ? BUDDY_ID_STAGE : BUDDY_ID_PROD;
     }
 
-    private static boolean shouldForceDev() {
+    private static boolean shouldForceStage() {
         return true;
     }
 
     private static class V1Action implements SlangMultiStepIntentAction {
 
-        private final Context mContext;
-        V1Action(Context ctx) {
-            mContext = ctx;
-        }
+        V1Action() {}
 
         @Override
         public void onIntentResolutionBegin(SlangIntent intent, SlangSession context) {
@@ -234,6 +230,7 @@ public class VoiceInterface {
 
         @Override
         public void onIntentResolutionEnd(SlangIntent intent, SlangSession context) {
+            Log.e(TAG, "Intent Resolved:" + intent.getName());
         }
 
         @Override

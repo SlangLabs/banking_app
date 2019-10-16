@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/grid5"
-                android:textColor="@color/white"
+                android:textColor="@color/slang_lib_white"
                 android:drawableTop="@drawable/baseline_highlight_white_24"
                 android:paddingTop="8dp"
                 android:text="@string/electricity" />
@@ -54,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/grid5"
-                android:textColor="@color/white"
+                android:textColor="@color/slang_lib_white"
                 android:drawableTop="@drawable/baseline_phone_android_white_24"
                 android:paddingTop="8dp"
                 android:text="@string/postpaid" />
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/grid5"
-                android:textColor="@color/white"
+                android:textColor="@color/slang_lib_white"
                 android:drawableTop="@drawable/baseline_wifi_white_24"
                 android:paddingTop="8dp"
                 android:text="@string/broadband" />
@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/grid5"
-                android:textColor="@color/white"
+                android:textColor="@color/slang_lib_white"
                 android:drawableTop="@drawable/baseline_local_drink_white_24"
                 android:paddingTop="8dp"
                 android:text="@string/water" />

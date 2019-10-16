@@ -18,14 +18,14 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:textColor="@color/white"
+            android:textColor="@color/slang_lib_white"
             android:text="@string/recent_date"/>
         <TextView
             android:id="@+id/recent_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recent_info"
-            android:textColor="@color/white60"
+            android:textColor="@color/slang_lib_white60"
             android:layout_marginTop="4dp"
             android:textSize="12sp"/>
     </LinearLayout>
@@ -39,7 +39,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginRight="12dp"
             android:text="@string/recent_type"
-            android:textColor="@color/white"
+            android:textColor="@color/slang_lib_white"
             android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -52,6 +52,6 @@
             android:layout_marginRight="8dp"
             android:textSize="20sp"
             android:text="@string/recent_amount"
-            android:textColor="@color/white"/>
+            android:textColor="@color/slang_lib_white"/>
     </RelativeLayout>
 </LinearLayout>

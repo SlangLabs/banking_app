@@ -12,7 +12,7 @@
         android:layout_marginLeft="16dp"
         android:layout_width="wrap_content"
         android:text="@string/account_number_text"
-        android:textColor="@color/light_font"
+        android:textColor="@color/slang_lib_light_font"
         android:layout_height="wrap_content" />
     <TextView
         android:layout_marginTop="4dp"
@@ -21,14 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/account_number"
-        android:textColor="@color/white"/>
+        android:textColor="@color/slang_lib_white"/>
     <TextView
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registered_address"
-        android:textColor="@color/light_font"/>
+        android:textColor="@color/slang_lib_light_font"/>
     <EditText
         android:layout_marginTop="4dp"
         android:layout_marginLeft="16dp"
@@ -37,8 +37,8 @@
         android:text="@string/reg_address"
         android:enabled="false"
         android:layout_width="match_parent"
-        android:textColor="@color/white60"
-        android:backgroundTint="@color/warm_grey"
+        android:textColor="@color/slang_lib_white60"
+        android:backgroundTint="@color/slang_lib_warm_grey"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/submit_button_cheque"
@@ -47,6 +47,6 @@
         android:layout_height="wrap_content"
         android:text="@string/submit"
         android:background="@drawable/grid5"
-        android:textColor="@color/white"
+        android:textColor="@color/slang_lib_white"
         android:layout_gravity="center"/>
 </LinearLayout>
