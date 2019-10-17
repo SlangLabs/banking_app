@@ -213,7 +213,7 @@ public class MoneyTransfer extends AppCompatActivity {
         Log.d(TAG, "Payee Name is " + payee);
         if(payee != null && !payee.isEmpty()) {
             for(int i = 1; i < payeeSpinner.getCount(); i++) {
-                if (payeeSpinner.getItemAtPosition(i).equals(payee)) {
+                if (((String)payeeSpinner.getItemAtPosition(i)).equalsIgnoreCase(payee)) {
                     payeeSpinner.setSelection(i);
                     break;
                 }

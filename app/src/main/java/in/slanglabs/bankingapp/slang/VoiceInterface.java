@@ -141,7 +141,7 @@ public class VoiceInterface {
                             }
                             break;
                         case ActivityDetector.ENTITY_AMOUNT:
-                            amount = Integer.valueOf(entity.getValue());
+                            amount = Double.valueOf(entity.getValue()).intValue();
                             Log.d(TAG, "Amount value is " + amount);
                             return Status.SUCCESS;
                         case ActivityDetector.ENTITY_VENDOR_NAME:
@@ -153,7 +153,7 @@ public class VoiceInterface {
                 case ActivityDetector.INTENT_FUND_TRANSFER:
                     switch (entity.getName()) {
                         case ActivityDetector.ENTITY_AMOUNT:
-                            amount = Integer.valueOf(entity.getValue());
+                            amount = Double.valueOf(entity.getValue()).intValue();
                             return Status.SUCCESS;
                         case ActivityDetector.ENTITY_PAYEE:
                             payee = entity.getValue();
