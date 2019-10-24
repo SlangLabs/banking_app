@@ -44,7 +44,7 @@ public class VoiceInterface {
 
     private static final String API_KEY_PROD = "c80525dd5fa146d6a3a1aba91fc5d6b9";
     private static final String API_KEY_STAGE = "98ed448c0e0f4ae087080932c6ab10c8";
-    private static final String BUDDY_ID_PROD = "5671e72eefe54307b5e32fcafdcf02ac";
+    private static final String BUDDY_ID_PROD = "56a5c8d7a168430c88bbbce0c4281e99";
     private static final String BUDDY_ID_STAGE = "5e8d75a10d714c1aa22c8921a7aa47a1";
 
     public static void init(final Application context) {
@@ -61,6 +61,7 @@ public class VoiceInterface {
                     .setRequestedLocales(SlangLocale.getSupportedLocales())
                     .setConfigOverrides(getConfigOverrides())
                     .setDefaultLocale(SlangLocale.LOCALE_ENGLISH_IN)
+                    .enableEnhancedSpeechRecognition(true)
                     .setEnvironment(SlangBuddy.Environment.STAGING)
                     .build();
         } catch (SlangBuddyOptions.InvalidOptionException e) {
